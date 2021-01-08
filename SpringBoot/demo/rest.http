@@ -1,0 +1,18 @@
+###
+
+GET http://localhost:8085/save
+
+
+###
+
+GET http://localhost:8085/findall
+
+###
+
+GET http://localhost:8085/findByFirstName
+?firstname=Jack
+
+Content-Type: application/json
+
+
+###
