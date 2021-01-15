@@ -1,4 +1,4 @@
-package section4
+package chapter1.section4
 
 fun main() {
     var a:Int = 10

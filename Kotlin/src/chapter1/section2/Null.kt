@@ -1,4 +1,4 @@
-package section2
+package chapter1.section2
 
 fun main() {
 //    var str1: String

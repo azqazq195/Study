@@ -1,4 +1,4 @@
-package section3
+package chapter1.section3
 
 fun main() {
     val a: Int = 128
