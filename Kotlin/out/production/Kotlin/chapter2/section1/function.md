@@ -123,7 +123,22 @@ fun check() {
 
 - 람다식은 고차 함수에서 인자로 넘기거나 결과값으로 반환등을 할 수 있다.
 
-##### 고차함수 : 함수안에 함수
+### 표현식이 2줄 이상일 때
+
+```kotlin
+val multi: (Int, Int) -> Int = { x: Int, y: Int ->
+    println("x * y")
+    x * y // 마지막 표현식이 반환됨
+}
+```
+
+### 자료형의 생략
+
+```kotlin
+val multi: (Int, Int) -> Int = { x: Int, y: Int -> x * y }  // 생략 x 전체 표현
+val multi = { x: Int, y: Int -> x * y }                     // 선언 자료형 생략
+val multi: (Int, Int) -> Int = { x, y -> x * y }            // 람다식 매개변수 자료형의 생략
+```
 
 ## 고차 함수
 
