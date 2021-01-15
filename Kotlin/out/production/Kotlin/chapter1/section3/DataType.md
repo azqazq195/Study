@@ -84,7 +84,7 @@ if (num is Int) {
 - Any 는 언제든 필요한 자료형으로 자동 변환(스마트 캐스트)
 
 ```kotlin
-fun section1.section2.section3.section4.main() {
+fun chapter1.section1.chapter1.section2.chapter1.section3.chapter1.section4.main() {
     checkArg("Hello")   // 문자열을 인자로 넣음
     checkArg(5)         // 숫자를 인자로 넣음
 }
