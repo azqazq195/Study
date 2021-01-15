@@ -1,4 +1,4 @@
-# 자료형 비고, 검사, 변환
+# 자료형 비교, 검사, 변환
 
 ## 코틀린의 자료형 변환
 
@@ -52,4 +52,60 @@ val a: Int = 128
 val b: Int? = 128
 println(a == b)   // true   (기본형)
 println(a === b)  // false  (객체)
+```
+
+## 자료형의 검사
+
+### is 키워드를 사용한 검사
+
+```kotlin
+val num = 256
+
+if (num is Int) {
+    // num 이 Int 형이 아닐 때
+    print(num)
+} else if (num !is Int) {
+    // num 이 Int 형이 아닐 때, 
+    // !(num is Int) 와 동일 
+    print("Not a Int")
+}
+```
+
+## 묵시적 변환
+
+### 스마트 캐스트
+
+스마트 캐스트로 자료형을 알아서 바꿔줄 수 있다. Any > Number > Int, Long 등
+
+#### Any
+
+- 자료형이 정해지지 않은 겨웅
+- 모든 클래스의 뿌리
+- Any 는 언제든 필요한 자료형으로 자동 변환(스마트 캐스트)
+
+```kotlin
+fun main() {
+    checkArg("Hello")   // 문자열을 인자로 넣음
+    checkArg(5)         // 숫자를 인자로 넣음
+}
+
+fun checkArg(x: Any) {    // 인자를 Any 형으로 받음
+    if (x is String) {
+        println("x is String: $x")
+    }
+    if (x is Int) {
+        println("x is Int: $x")
+    }
+}
+```
+
+#### Number
+
+```kotlin
+// 12.2 에 의해 test 는 Float 형으로 스마트 캐스트
+var test: NUmber = 12.2
+
+test = 12       // Int 형으로 스마트 캐스트
+test = 120L     // Long 형으로 스마트 캐스트
+test += 12.0f   // Float 형으로 스마트 캐스트
 ```
