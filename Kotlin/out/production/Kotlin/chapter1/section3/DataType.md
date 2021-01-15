@@ -109,3 +109,6 @@ test = 12       // Int 형으로 스마트 캐스트
 test = 120L     // Long 형으로 스마트 캐스트
 test += 12.0f   // Float 형으로 스마트 캐스트
 ```
+
+---
+Ref. <a href="https://www.boostcourse.org/" target="_blank">네이버 부스트코스</a>

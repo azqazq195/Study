@@ -4,7 +4,7 @@
 만약 값이 할당되지 않은 변수를 사용하면 코틀린에서 오류가 발생합니다.
 
 ## null 을 허용한 변수 검사
-### 코틀린의 변수 선언은 기본적으로 null을 허용하지 않는다.
+#### 코틀린의 변수 선언은 기본적으로 null을 허용하지 않는다.
 
 ```kotlin
 val a: Int = 30
@@ -43,3 +43,11 @@ val size = if (temp != null) temp.length else -1
 // or elvis 연산자
 val size = temp?.length ?: -1
 ```
+
+### nonNull
+
+`println("length: ${str1!!.length}")`
+!!. 넌널(nonNull) 단정 기호 => 앞의 변수가 널일리 없다. 즉 널이더라도 실행이 된다(오류 발생).
+넌널 단정 기호는 쓰지 않는 것이 좋다.
+---
+Ref. <a href="https://www.boostcourse.org/" target="_blank">네이버 부스트코스</a>
