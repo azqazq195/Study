@@ -1,3 +1,5 @@
+package section2
+
 fun main() {
 //    var str1: String
 //    str1 = null
