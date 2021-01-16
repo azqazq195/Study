@@ -138,6 +138,22 @@ val multi: (Int, Int) -> Int = { x: Int, y: Int ->
 val multi: (Int, Int) -> Int = { x: Int, y: Int -> x * y }  // 생략 x 전체 표현
 val multi = { x: Int, y: Int -> x * y }                     // 선언 자료형 생략
 val multi: (Int, Int) -> Int = { x, y -> x * y }            // 람다식 매개변수 자료형의 생략
+val multi = { x, y -> x * y }   // 에러!! 추론 불가
+// Unit 타입의 경우 추론이 가능하다
+val greet = { println("Hello World!") }
+```
+
+### 반환 자료형이 없거나 매개변수가 하나 있을 때
+
+```kotlin
+val greet: () -> Unit = { println("Hello World!") }
+val square: (Int) -> Int = { x -> x * x }
+```
+
+### 람다식 안에 람다식이 있는 경우
+
+```kotlin
+val nestedLambda: () -> () -> Unit = { { println("nested") } }
 ```
 
 ## 고차 함수
