@@ -173,5 +173,9 @@ fun highFunc(sum: (Int, Int) -> Int, a: Int, b: Int): Int = sum(a, b)
 `{ x, y -> x + y }` 람다식을
 `sum: (Int, Int) -> Int` 형태의 매개변수로 받을 수 있다.
 
+## 인라인 함수
+- 함수가 호출되는 곳에 내용을 모두 복사
+- 함수의 분기 없이 처리 -> 성능 증가
+
 ---
 Ref. <a href="https://www.boostcourse.org/" target="_blank">네이버 부스트코스</a>
