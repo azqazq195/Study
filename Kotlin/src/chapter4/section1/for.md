@@ -42,3 +42,12 @@ for (i in 1..5 step 2) print(i)
 ```kotlin
 for (i in 5 downTo 1 step 2) print(i)
 ```
+
+- 추가
+```kotlin
+ for (i in 0..(input-1))
+     
+ for (i in 0 until input)
+```
+
+until -> input 전까지
