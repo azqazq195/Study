@@ -62,7 +62,7 @@ println(a === b)  // false  (객체)
 val num = 256
 
 if (num is Int) {
-    // num 이 Int 형이 아닐 때
+    // num 이 Int 형 일때
     print(num)
 } else if (num !is Int) {
     // num 이 Int 형이 아닐 때, 
@@ -84,7 +84,7 @@ if (num is Int) {
 - Any 는 언제든 필요한 자료형으로 자동 변환(스마트 캐스트)
 
 ```kotlin
-fun chapter1.section1.chapter1.section2.chapter1.section3.chapter1.section4.main() {
+fun main() {
     checkArg("Hello")   // 문자열을 인자로 넣음
     checkArg(5)         // 숫자를 인자로 넣음
 }
