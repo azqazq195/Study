@@ -2,6 +2,7 @@ package com.androiddevs.mvvmnewsapp
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 // 룸으로 데이터 만들기
 
@@ -17,4 +18,4 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : Serializable
