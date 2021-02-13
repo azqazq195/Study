@@ -42,5 +42,5 @@ public class UserController {
     }
 
     @GetMapping("/user/detailsByRole/{id}")
-    public UserModel getUserByRole(@PathVariable Long id) { return userService.getUserByRole(id); }
+    public List<UserModel> getUserByRole(@PathVariable Long id) { return userService.getUserByRole(id); }
 }

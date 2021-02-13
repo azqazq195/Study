@@ -18,5 +18,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from user", nativeQuery = true)
     List<User> findAllByUserId();
 
-    Optional<User> findByRoles_id(Long id);
+    List<Optional<User>> findByRoles_id(Long id);
 }

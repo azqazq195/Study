@@ -1,6 +1,7 @@
 package com.example.jpa.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -52,5 +53,12 @@ public class User  {
     }
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        if(roles == null){
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
     }
 }

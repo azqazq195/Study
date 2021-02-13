@@ -1,5 +1,6 @@
 package com.example.jpa.service;
 
+import com.example.jpa.entity.Role;
 import com.example.jpa.entity.User;
 import com.example.jpa.model.RoleModel;
 import com.example.jpa.model.UserModel;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -22,7 +24,10 @@ public class UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
-    /** Create a new User */
+
+    /**
+     * Create a new User
+     */
     public ResponseEntity<Object> createUser(User model) {
         User user = new User();
         if (userRepository.findByEmail(model.getEmail()).isPresent()) {
@@ -32,7 +37,12 @@ public class UserService {
             user.setLastName(model.getLastName());
             user.setMobile(model.getMobile());
             user.setEmail(model.getEmail());
-            user.setRoles(model.getRoles());
+            if (model.getRoles() != null) {
+                for (Role role : model.getRoles()) {
+                    user.addRole(roleRepository.findByName(role.getName()).get());
+                }
+            }
+            // user.setRoles(model.getRoles());
 
             User savedUser = userRepository.save(user);
             if (userRepository.findById(savedUser.getId()).isPresent())
@@ -41,10 +51,12 @@ public class UserService {
         }
     }
 
-    /** Update an Existing User */
+    /**
+     * Update an Existing User
+     */
     @Transactional
     public ResponseEntity<Object> updateUser(User user, Long id) {
-        if(userRepository.findById(id).isPresent()) {
+        if (userRepository.findById(id).isPresent()) {
             User newUser = userRepository.findById(id).get();
             newUser.setFirstName(user.getFirstName());
             newUser.setLastName(user.getLastName());
@@ -52,12 +64,15 @@ public class UserService {
             newUser.setEmail(user.getEmail());
             newUser.setRoles(user.getRoles());
             User savedUser = userRepository.save(newUser);
-            if(userRepository.findById(savedUser.getId()).isPresent())
-                return  ResponseEntity.accepted().body("User updated successfully");
+            if (userRepository.findById(savedUser.getId()).isPresent())
+                return ResponseEntity.accepted().body("User updated successfully");
             else return ResponseEntity.unprocessableEntity().body("Failed updating the user specified");
         } else return ResponseEntity.unprocessableEntity().body("Cannot find the user specified");
     }
-    /** Delete an User*/
+
+    /**
+     * Delete an User
+     */
     public ResponseEntity<Object> deleteUser(Long id) {
         if (userRepository.findById(id).isPresent()) {
             userRepository.deleteById(id);
@@ -68,33 +83,38 @@ public class UserService {
     }
 
     public UserModel getUser(Long id) {
-        if(userRepository.findById(id).isPresent()) {
+        if (userRepository.findById(id).isPresent()) {
             User user = userRepository.findById(id).get();
             UserModel userModel = new UserModel();
             userModel.setFirstName(user.getFirstName());
             userModel.setLastName(user.getLastName());
             userModel.setEmail(user.getEmail());
             userModel.setMobile(user.getMobile());
-            userModel.setRoles( getRoleList(user));
+            userModel.setRoles(getRoleList(user));
             return userModel;
         } else return null;
     }
 
-    public UserModel getUserByRole(Long id){
-        if(userRepository.findByRoles_id(id).isPresent()) {
-            User user = userRepository.findByRoles_id(id).get();
-            UserModel userModel = new UserModel();
-            userModel.setFirstName(user.getFirstName());
-            userModel.setLastName(user.getLastName());
-            userModel.setEmail(user.getEmail());
-            userModel.setMobile(user.getMobile());
-            userModel.setRoles( getRoleList(user));
-            return userModel;
+    public List<UserModel> getUserByRole(Long id) {
+        if (userRepository.findByRoles_id(id).get(0).isPresent()) {
+            List<Optional<User>> users = userRepository.findByRoles_id(id);
+            List<UserModel> userModels = new ArrayList<>();
+            for (Optional<User> user : users) {
+                UserModel userModel = new UserModel();
+                userModel.setFirstName(user.get().getFirstName());
+                userModel.setLastName(user.get().getLastName());
+                userModel.setEmail(user.get().getEmail());
+                userModel.setMobile(user.get().getMobile());
+                userModel.setRoles(getRoleList(user.get()));
+                userModels.add(userModel);
+            }
+            return userModels;
         } else return null;
     }
-    public List<UserModel > getUsers() {
+
+    public List<UserModel> getUsers() {
         List<User> userList = userRepository.findAll();
-        if(userList.size()>0) {
+        if (userList.size() > 0) {
             List<UserModel> userModels = new ArrayList<>();
             for (User user : userList) {
                 UserModel model = new UserModel();
@@ -108,9 +128,10 @@ public class UserService {
             return userModels;
         } else return new ArrayList<>();
     }
-    private List<RoleModel> getRoleList(User user){
+
+    private List<RoleModel> getRoleList(User user) {
         List<RoleModel> roleList = new ArrayList<>();
-        for(int i=0; i< user.getRoles().size(); i++) {
+        for (int i = 0; i < user.getRoles().size(); i++) {
             RoleModel roleModel = new RoleModel();
             roleModel.setName(user.getRoles().get(i).getName());
             roleModel.setDescription(user.getRoles().get(i).getDescription());
