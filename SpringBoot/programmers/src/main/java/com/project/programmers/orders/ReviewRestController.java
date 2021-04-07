@@ -18,16 +18,16 @@ public class ReviewRestController {
     }
 
     // review
-    @PostMapping(path = "{id}/review")
-    public ApiResult<ReviewDTO> review(
-            @PathVariable Long id,
-            @RequestBody String content
-            ) {
-        int row = reviewService.review(new Review(1L,id,content));
-        return success(
-                reviewService.review(new Review(1L,id,content))
-                .map(ReviewDTO::new)
-                .orElseThrow(() -> new NotFoundException("Could not found review for " + id))
-        );
-    }
+//    @PostMapping(path = "{id}/review")
+//    public ApiResult<ReviewDTO> review(
+//            @PathVariable Long id,
+//            @RequestBody String content
+//            ) {
+//        int row = reviewService.review(new Review(1L,id,content));
+//        return success(
+//                reviewService.review(new Review(1L,id,content))
+//                .map(ReviewDTO::new)
+//                .orElseThrow(() -> new NotFoundException("Could not found review for " + id))
+//        );
+//    }
 }
