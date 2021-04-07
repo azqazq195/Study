@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="trimmer"
+            type="kr.co.jsh.feature.videoedit.TrimmerActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/video_edit_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/grey1">
+
+
+        <ImageView
+            android:id="@+id/video_edit_back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:onClick="@{() -> trimmer.backBtn()}"
+            android:background="@drawable/ic_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/video_edit_save_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_file_download"
+            android:onClick="@{() -> trimmer.sendRemoveVideoInfoToServer()}"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_back_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_back_btn" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/video_edit_child_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/grey2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" >
+
+            <TextView
+                android:id="@+id/video_edit_trim_redo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/redo_trim"
+                android:gravity="center"
+                android:clickable="@{trimmer.cutRedoButtonColor}"
+                android:onClick="@{() -> trimmer.videoEditRedoBtn()}"
+                android:textColor="@{trimmer.cutRedoButtonColor ? @color/white : @color/grey3}"
+                app:layout_constraintBottom_toBottomOf="@+id/video_edit_trim_undo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/video_edit_trim_undo" />
+
+            <TextView
+                android:id="@+id/video_edit_trim_undo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/undo_trim"
+                android:gravity="center"
+                android:onClick="@{() -> trimmer.videoEditUndoBtn()}"
+                android:clickable="@{trimmer.cutUndoButtonColor}"
+                android:textColor="@{trimmer.cutUndoButtonColor ? @color/white : @color/grey3}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/video_edit_trim_redo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/video_loader"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toTopOf="@+id/video_fullscreen_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_edit_back_btn" />
+
+
+        <com.byox.drawview.views.DrawView
+            android:id="@+id/video_frame_draw_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:foregroundGravity="center"
+            android:visibility="invisible"
+            app:dv_draw_anti_alias="true"
+            app:dv_draw_color="@color/black"
+            app:dv_draw_corners="round"
+            app:dv_draw_dither="true"
+            app:dv_draw_enable_zoom="true"
+            app:dv_draw_max_zoom_factor="8"
+            app:dv_draw_mode="draw"
+            app:dv_draw_style="stroke"
+            app:dv_draw_tool="pen"
+            app:dv_draw_width="20"
+            app:dv_draw_zoomregion_maxscale="5"
+            app:dv_draw_zoomregion_minscale="2"
+            app:dv_draw_zoomregion_scale="4"
+            app:layout_constraintBottom_toBottomOf="@+id/video_loader"
+            app:layout_constraintEnd_toEndOf="@+id/video_loader"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="@+id/video_loader"
+            app:layout_constraintTop_toTopOf="@+id/video_loader" />
+
+
+        <ImageButton
+            android:id="@+id/video_edit_redo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="@{() -> trimmer.redoBtn()}"
+            android:background="@{trimmer.canDrawRedo? @drawable/ic_redo_white_24dp : @drawable/ic_redo_grey_24dp}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_undo_btn"
+            app:layout_constraintStart_toEndOf="@+id/video_edit_undo_btn"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_undo_btn" />
+
+        <ImageButton
+            android:id="@+id/video_edit_undo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:onClick="@{() -> trimmer.undoBtn()}"
+            android:background="@{trimmer.canDrawUndo ? @drawable/ic_undo_white_24dp : @drawable/ic_undo_grey_24dp}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_crop_btn"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_remove_btn" />
+
+        <TextView
+            android:id="@+id/video_edit_remove_btn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="@{trimmer.drawButtonColor}"
+            android:gravity="center"
+            android:onClick="@{() -> trimmer.removeMode()}"
+            android:text="@string/draw"
+            android:textColor="@{trimmer.drawButtonColor ? @color/white : @color/grey3}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_scroll_view" />
+
+
+        <TextView
+            android:id="@+id/video_edit_reset_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:clickable="@{trimmer.cutClearButtonColor}"
+            android:onClick="@{() -> trimmer.resetTimeLineView()}"
+            android:text="@string/clear_cut"
+            android:textColor="@{trimmer.cutClearButtonColor ? @color/white : @color/grey3}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_remove_btn"
+            app:layout_constraintStart_toEndOf="@+id/video_edit_remove_btn"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_remove_btn"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <TextView
+            android:id="@+id/video_edit_reset_draw_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:clickable="@{trimmer.drawClearButtonColor}"
+            android:gravity="center"
+            android:onClick="@{() -> trimmer.clearDraw()}"
+            android:text="@string/clear_draw"
+            android:textColor="@{trimmer.drawClearButtonColor ? @color/white : @color/grey3}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_reset_btn"
+            app:layout_constraintStart_toEndOf="@+id/video_edit_reset_btn"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_reset_btn"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <TextView
+            android:id="@+id/video_edit_send_server_remove_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="@{trimmer.removeButtonColor}"
+            android:onClick="@{() -> trimmer.sendRemoveVideoInfoToServer()}"
+            android:paddingBottom="5dp"
+            android:text="@string/remove"
+            android:textColor="@{trimmer.removeButtonColor ? @color/white : @color/grey3}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_send_server_improve_btn"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_undo_btn" />
+
+        <TextView
+            android:id="@+id/video_edit_send_server_improve_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:clickable="@{trimmer.improveButtonColor}"
+            android:onClick="@{() -> trimmer.sendImproveVideoInfoToServer()}"
+            android:paddingBottom="5dp"
+            android:text="@string/improve"
+            android:textColor="@{trimmer.improveButtonColor ? @color/white : @color/grey3}"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_reset_draw_btn"
+            app:layout_constraintStart_toEndOf="@+id/video_edit_send_server_remove_btn"
+            app:layout_constraintTop_toBottomOf="@+id/video_edit_redo_btn"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <ImageView
+            android:id="@+id/icon_video_play_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_play_arrow_white"
+            android:onClick="@{() -> trimmer.playVideo()}"
+            app:layout_constraintBottom_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_loader"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/icon_video_pause_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_pause_white"
+            android:visibility="gone"
+            android:onClick="@{() -> trimmer.pauseVideo()}"
+            app:layout_constraintBottom_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_loader"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <ImageView
+            android:id="@+id/video_fullscreen_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:onClick="@{() -> trimmer.fullScreen()}"
+            android:background="@drawable/ic_full_screen"
+            app:layout_constraintBottom_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/icon_video_play_btn" />
+
+        <ImageButton
+            android:id="@+id/video_edit_crop_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:onClick="@{() -> trimmer.cuttingVideoBtn()}"
+            android:background="@drawable/ic_cut_button"
+            app:layout_constraintEnd_toEndOf="@+id/video_edit_scroll_view"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_scroll_view"
+            app:layout_constraintTop_toBottomOf="@+id/video_edit_scroll_view" />
+
+        <HorizontalScrollView
+            android:id="@+id/video_edit_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_child_layout"
+            app:layout_constraintEnd_toEndOf="@+id/video_edit_child_layout"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_child_layout"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintVertical_bias="0.26999998">
+
+            <FrameLayout
+                android:id="@+id/video_edit_child_frame_layout"
+                android:layout_width="wrap_content"
+                android:background="@drawable/border_round_trans"
+                android:layout_height="50dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/video_edit_recycler"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:adjustViewBounds="true" />
+
+                <View
+                    android:id="@+id/selected_time_line_view"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_round" />
+            </FrameLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/video_start_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/video_edit_scroll_view"
+            app:layout_constraintEnd_toEndOf="@+id/video_edit_scroll_view"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_scroll_view"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="tetetetet" />
+
+        <TextView
+            android:id="@+id/video_end_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="end"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/video_edit_scroll_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/video_start_time_tv"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_child_layout"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="tetetetet" />
+
+        <SeekBar
+            android:id="@+id/handlerTop"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:max="1000"
+            android:progressDrawable="@android:color/transparent"
+            android:secondaryProgress="0"
+            android:background="@drawable/seekbar_line"
+            app:layout_constraintBottom_toBottomOf="@+id/video_edit_scroll_view"
+            app:layout_constraintEnd_toEndOf="@+id/video_edit_scroll_view"
+            app:layout_constraintStart_toStartOf="@+id/video_edit_scroll_view"
+            app:layout_constraintTop_toTopOf="@+id/video_edit_scroll_view" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <kr.co.jsh.customview.BlockingView
+            android:id="@+id/blockingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="#80333333"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_loop="true"
+            app:lottie_fileName="loading.json" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
