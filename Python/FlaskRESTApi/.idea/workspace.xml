@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94ab0fb6-65a7-41a5-b789-5a8e406b2192" name="디폴트 변경 목록" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlaskRESTApi.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/authentication.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/errors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/meal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/meals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/api/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/models/meals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/models/users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/resources/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/resources/meal_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/resources/user_data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/tools/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Brandi/tools/load_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Brandi/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Brandi/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Brandi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Brandi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mongo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Mongo/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mongo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Mongo/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +57,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Mongo" />
     <property name="project.structure.last.edited" value="프로젝트" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -61,13 +76,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -159,6 +176,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617785503681</updated>
       <workItem from="1617785506169" duration="7338000" />
+      <workItem from="1617796541437" duration="1009000" />
     </task>
     <servers />
   </component>
@@ -175,6 +193,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
