@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dda53bda-ae4b-40ea-a45a-203952d928e4" name="디폴트 변경 목록" comment="">
-      <change afterPath="$PROJECT_DIR$/js/example.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/example2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/example3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/example4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/example5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/example6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/tutorial/closure.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/tutorial/closure.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaScript.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/tutorial/closer.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +24,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/index.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/js/example.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/js/example2.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/js/tutorial/example.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/js/tutorial/example2.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1sVnnLXqVTqdsIOaYtrgj4av3H4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -49,14 +44,21 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
-  <component name="RunManager" selected="Node.js.array.js">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\DEV\Code\Study\Javascript\js\tutorial" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.closure.js">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -64,7 +66,7 @@
     <configuration name="array.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/tutorial/array.js" working-dir="$PROJECT_DIR$/js">
       <method v="2" />
     </configuration>
-    <configuration name="example2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/tutorial/example2.js" working-dir="$PROJECT_DIR$/js">
+    <configuration name="closure.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/tutorial/closure.js" working-dir="$PROJECT_DIR$/js/tutorial">
       <method v="2" />
     </configuration>
     <configuration name="fun.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/js/tutorial/fun.js" working-dir="$PROJECT_DIR$/js">
@@ -78,11 +80,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.closure.js" />
         <item itemvalue="Node.js.array.js" />
         <item itemvalue="Node.js.object2.js" />
         <item itemvalue="Node.js.object.js" />
         <item itemvalue="Node.js.fun.js" />
-        <item itemvalue="Node.js.example2.js" />
       </list>
     </recent_temporary>
   </component>
@@ -98,7 +100,8 @@
       <workItem from="1620968154697" duration="2092000" />
       <workItem from="1620973595405" duration="3259000" />
       <workItem from="1620990542195" duration="92000" />
-      <workItem from="1620994044479" duration="2128000" />
+      <workItem from="1620994044479" duration="4544000" />
+      <workItem from="1621054265678" duration="1201000" />
     </task>
     <servers />
   </component>
