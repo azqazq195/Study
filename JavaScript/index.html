@@ -1,41 +1,119 @@
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <label for="name">이름 : </label>
+        <input type="text" id="name" value="" />
+      </div>
+      <div>
+        <label for="city">지역 : </label>
+        <select id="city" onchange="changeCity()"></select>
+      </div>
+      <div>
+        <label>동네 :</label>
+        <select id="region_02">
+          <option value="">강남</option>
+          <option value="">서초</option>
+        </select>
+        <select id="region_064" style="display: none">
+          <option value="">제주시</option>
+          <option value="">서귀포시</option>
+        </select>
+      </div>
+      <button type="button" onclick="register()">등록</button>
+    </div>
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+      crossorigin="anonymous"
+    ></script>
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+    <script>
+      function register() {
+        // js
+        // alert(document.getElementById("name").value)
+        // alert(document.getElementById("city").value)
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
+        // jQuery
+        let obj = {};
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+        obj.name = $("#name").val();
+        obj.city = $("#city").val();
 
-  <meta name="theme-color" content="#fafafa">
-</head>
+        printConsole(obj);
+      }
 
-<body>
+      let city = [
+        { code: "02", name: "서울" },
+        { code: "064", name: "제주" },
+      ];
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+      function loadCity(city) {
+        for (let i = 0; i < city.length; i++) {
+          if (i === 0)
+            $("#city").append(
+              '<option value="' +
+                city[i].code +
+                '" selected>' +
+                city[i].name +
+                "</option>"
+            );
+          else
+            $("#city").append(
+              '<option value="' +
+                city[i].code +
+                '">' +
+                city[i].name +
+                "</option>"
+            );
+        }
+      }
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
+      loadCity(city);
 
+      function changeCity() {
+        // js
+        // let city = document.getElementById("city").value;
+        // document.getElementById("region_02").style.display = "none";
+        // document.getElementById("region_064").style.display = "none";
+        // document.getElementById("region_" + city).style.display = "";
+
+        // jQuery
+        let city = $("#city").val();
+        $("#region_02").hide();
+        $("#region_064").hide();
+        $("#region_" + city).show();
+      }
+
+      function printConsole(data) {
+        console.log(data);
+      }
+    </script>
+  </body>
 </html>
