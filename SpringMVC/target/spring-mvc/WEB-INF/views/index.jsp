@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Hello, World!</title>
+    <title>Insert title here</title>
 </head>
 <body>
-<div align="center">
-    <h3>${text}</h3>
-    <br/>
-</div>
+<h1>게시판 만들기 </h1>
+<hr>
+<br> <a href="getBoardList.do">글 목록 보기</a>
+<hr>
 </body>
 </html>
