@@ -68,17 +68,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.MyBatisTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="generated-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="단일 요청 실행">
       <method v="2" />
     </configuration>
@@ -224,8 +213,8 @@
       <item itemvalue="HTTP 요청.generated-requests#3" />
       <item itemvalue="JUnit.DBConnectionTest" />
       <item itemvalue="JUnit.MyBatisTest" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.50" />
       <item itemvalue="JUnit.MyBatisTest.testSession" />
+      <item itemvalue="Tomcat 서버.Tomcat 9.0.50" />
     </list>
     <recent_temporary>
       <list>
@@ -247,7 +236,9 @@
       <updated>1626080115537</updated>
       <workItem from="1626080119271" duration="2117000" />
       <workItem from="1626162394529" duration="5945000" />
-      <workItem from="1626497351026" duration="1009000" />
+      <workItem from="1626497351026" duration="1061000" />
+      <workItem from="1626498471422" duration="51000" />
+      <workItem from="1626608026514" duration="20000" />
     </task>
     <servers />
   </component>
