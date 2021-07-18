@@ -10,6 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5686016f-d132-44f0-bf6e-4bf7058626df" name="디폴트 변경 목록" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/SpringMVC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +61,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="spring.boot" />
   </component>
   <component name="RecentsManager">
@@ -68,6 +72,17 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.MyBatisTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="generated-requests#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" runType="단일 요청 실행">
       <method v="2" />
     </configuration>
@@ -214,7 +229,7 @@
       <item itemvalue="JUnit.DBConnectionTest" />
       <item itemvalue="JUnit.MyBatisTest" />
       <item itemvalue="JUnit.MyBatisTest.testSession" />
-      <item itemvalue="Tomcat 서버.Tomcat 9.0.50" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.50" />
     </list>
     <recent_temporary>
       <list>
@@ -239,6 +254,7 @@
       <workItem from="1626497351026" duration="1061000" />
       <workItem from="1626498471422" duration="51000" />
       <workItem from="1626608026514" duration="20000" />
+      <workItem from="1626608226330" duration="901000" />
     </task>
     <servers />
   </component>
