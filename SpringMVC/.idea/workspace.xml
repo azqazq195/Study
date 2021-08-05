@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5686016f-d132-44f0-bf6e-4bf7058626df" name="디폴트 변경 목록" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springmvc/MyBatisTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springmvc/MyBatisTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="5686016f-d132-44f0-bf6e-4bf7058626df" name="디폴트 변경 목록" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +56,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/SpringMVC" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -255,7 +251,7 @@
       <workItem from="1626608026514" duration="20000" />
       <workItem from="1626608226330" duration="901000" />
       <workItem from="1626787574316" duration="372000" />
-      <workItem from="1626952423482" duration="299000" />
+      <workItem from="1626952423482" duration="644000" />
     </task>
     <servers />
   </component>
