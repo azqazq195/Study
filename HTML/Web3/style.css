@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 네비게이션 */
+
+header li, header a, header button {
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 10%;
+    background-color: #1a1a1a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    width: auto;
+    height: 50px;
+}
+
+.nav__links{
+    list-style: none;
+}
+
+.nav__links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav__links li:last-child {
+    display: inline-block;
+    padding: 0px 0px;
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover{
+    color: rgba(97,180,108,1);
+}
+
+button {
+    padding-left: 20px;
+    padding: 9px 25px;
+    background-color: rgba(97,180,108,1);
+    border: none;
+    border-radius: 15px;
+    cursor:  pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(97,180,108,0.6);
+}
+
+.section {
+    padding-left: 19.16%;
+    padding-right: 19.16%;
+}
+
+/********** 섹션 1 **********/
+
+.s1 h1 {
+    font-size: 48px;
+    color: #FFFFFF;
+}
+
+.s1 p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.s1 .content {
+    float: left;
+    background-color: #96C261;
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.s1 .icon {
+    float: left;
+}
+
+/********** 섹션 2 **********/
+
+.s2 h1 {
+    font-size: 48px;
+    color: #494949;
+}
+
+.s2 h1 .point{
+    color: #96C261;
+}
+
+.s2 p {
+    font-size: 20px;
+    font-weight: 500;
+    color: #494949;
+}
+
+.s2 .content {
+    float: left;
+}
+
+.s2 .icon {
+    float: left;
+}
+
+.box2 {
+    z-index: -1;
+}
+
+.box3 {
+    z-index: -2;
+}
+
+/********** 섹션 3 **********/
+
+.s3 {
+    background-color: #F1F1F1;
+    display: flex;
+}
+
+.s3 .content {
+    float: left;
+}
+
+.s3 .icon {
+    float: right;
+}

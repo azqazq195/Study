@@ -1,0 +1,35 @@
+* {
+  color: green;
+}
+
+li {
+  color: blue;
+}
+
+li #special {
+  color: pink;
+}
+
+/* padding: top right bottom left */
+/* padding: topBottom, leftRight */
+
+.red {
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  padding: 20px;
+  margin: 20px;
+}
+
+button:hover {
+  color: red;
+  background: beige;
+}
+
+a[href] {
+  color: purple;
+}
+
+a[href="naver.com"] {
+  color: blue;
+}
