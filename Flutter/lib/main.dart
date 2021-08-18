@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/navigator/ScreenA.dart';
+import 'package:flutter_app/navigator/ScreenB.dart';
+import 'package:flutter_app/navigator/ScreenC.dart';
+
+// import 'SnackBar.dart';
+// import 'Drawer.dart';
+// import 'ToastMessage.dart';
+// import 'Container.dart';
+// import 'ColumnRow.dart';
+// import 'Navigator.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,45 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Appbar",
+      // title: "Appbar",
       theme: ThemeData(primarySwatch: Colors.red),
-      home: MyPage(),
-    );
-  }
-}
-
-class MyPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Snack Bar"),
-        centerTitle: true,
-      ),
-      body: MySnackBar(),
-    );
-  }
-}
-
-// hmmmmddd
-class MySnackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        child: Text("Show me"),
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              "Hello",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white),
-            ),
-            backgroundColor: Colors.teal,
-            duration: Duration(milliseconds: 1000),
-          ));
-        },
-      ),
+      // home: MyNavigatorWithOutAppBarPage(),
+      initialRoute: '/A',
+      routes: {
+        '/A': (context) => ScreenA(),
+        '/B': (context) => ScreenB(),
+        '/C': (context) => ScreenC(),
+      },
     );
   }
 }
