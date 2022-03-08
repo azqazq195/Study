@@ -292,7 +292,7 @@ class _OthersState extends State<Others> {
               tabs: tabs,
               bodies: List.generate(
                 tabs.length,
-                    (index) => Container(
+                (index) => Container(
                   color: Colors.accentColors[index.clamp(
                     0,
                     Colors.accentColors.length - 1,
@@ -309,7 +309,7 @@ class _OthersState extends State<Others> {
                             child: Text(
                               'A C R Y L I C',
                               style:
-                              FluentTheme.of(context).typography.titleLarge,
+                                  FluentTheme.of(context).typography.titleLarge,
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -335,7 +335,7 @@ class _OthersState extends State<Others> {
                 ),
                 decoration: BoxDecoration(
                   border:
-                  Border.all(color: FluentTheme.of(context).inactiveColor),
+                      Border.all(color: FluentTheme.of(context).inactiveColor),
                 ),
                 child: TreeView(items: items),
               ),
@@ -349,7 +349,7 @@ class _OthersState extends State<Others> {
                 ),
                 decoration: BoxDecoration(
                   border:
-                  Border.all(color: FluentTheme.of(context).inactiveColor),
+                      Border.all(color: FluentTheme.of(context).inactiveColor),
                 ),
                 child: TreeView(
                   selectionMode: TreeViewSelectionMode.single,
@@ -367,7 +367,7 @@ class _OthersState extends State<Others> {
                 ),
                 decoration: BoxDecoration(
                   border:
-                  Border.all(color: FluentTheme.of(context).inactiveColor),
+                      Border.all(color: FluentTheme.of(context).inactiveColor),
                 ),
                 child: TreeView(
                   selectionMode: TreeViewSelectionMode.multiple,
@@ -385,7 +385,7 @@ class _OthersState extends State<Others> {
                 ),
                 decoration: BoxDecoration(
                   border:
-                  Border.all(color: FluentTheme.of(context).inactiveColor),
+                      Border.all(color: FluentTheme.of(context).inactiveColor),
                 ),
                 child: TreeView(
                   items: lazy,
