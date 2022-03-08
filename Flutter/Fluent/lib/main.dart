@@ -1,4 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:fluent/provider/config.dart';
+import 'package:fluent/utils/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 import 'package:system_theme/system_theme.dart';
@@ -15,9 +17,9 @@ import 'screens/icons.dart';
 import 'screens/inputs.dart';
 import 'screens/mobile.dart';
 import 'screens/others.dart';
-import 'screens/settings.dart';
+import 'screens/settings/settings.dart';
 import 'screens/typography.dart';
-import 'theme.dart';
+import 'provider/theme.dart';
 
 const String appTitle = 'Fluent UI Showcase for Flutter';
 
@@ -41,6 +43,8 @@ void main() async {
   }
 
   setPathUrlStrategy();
+
+  SharedPreferences.init();
 
   if (isDesktop) {
     await flutter_acrylic.Window.initialize();
@@ -140,11 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: kIsWeb
             ? null
             : DragToMoveArea(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [Spacer(), WindowButtons()],
-          ),
-        ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [Spacer(), WindowButtons()],
+                ),
+              ),
       ),
       pane: NavigationPane(
         selected: index,
@@ -172,8 +176,15 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         }(),
         items: [
-          // It doesn't look good when resizing from compact to open
-          // PaneItemHeader(header: Text('User Interaction')),
+          PaneItem(
+            icon: const Icon(FluentIcons.code),
+            title: const Text('Code'),
+          ),
+          PaneItem(
+            icon: const Icon(FluentIcons.database),
+            title: const Text('DataBase'),
+          ),
+          PaneItemSeparator(),
           PaneItem(
             icon: const Icon(FluentIcons.checkbox_composite),
             title: const Text('Inputs'),
@@ -213,7 +224,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         autoSuggestBox: AutoSuggestBox(
           controller: TextEditingController(),
-          items: const ['Inputs', 'Forms', 'Colors', 'Icons', 'Typhography', 'Mobile', 'Other'],
+          items: const [
+            'Inputs',
+            'Forms',
+            'Colors',
+            'Icons',
+            'Typhography',
+            'Mobile',
+            'Other'
+          ],
           onSelected: (str) {
             setState(() {
               index = 3;
@@ -235,6 +254,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       content: NavigationBody(index: index, children: [
+        const InputsPage(),
+        const InputsPage(),
         const InputsPage(),
         const Forms(),
         const ColorsPage(),
@@ -307,24 +328,24 @@ class _LinkPaneItemAction extends PaneItem {
     focusNode,
     autofocus = false,
   }) : super(
-    icon: icon,
-    title: title,
-    infoBadge: infoBadge,
-    focusNode: focusNode,
-    autofocus: autofocus,
-  );
+          icon: icon,
+          title: title,
+          infoBadge: infoBadge,
+          focusNode: focusNode,
+          autofocus: autofocus,
+        );
 
   final String link;
 
   @override
   Widget build(
-      BuildContext context,
-      bool selected,
-      VoidCallback? onPressed, {
-        PaneDisplayMode? displayMode,
-        bool showTextOnTop = true,
-        bool? autofocus,
-      }) {
+    BuildContext context,
+    bool selected,
+    VoidCallback? onPressed, {
+    PaneDisplayMode? displayMode,
+    bool showTextOnTop = true,
+    bool? autofocus,
+  }) {
     return Link(
       uri: Uri.parse(link),
       builder: (context, followLink) => super.build(
