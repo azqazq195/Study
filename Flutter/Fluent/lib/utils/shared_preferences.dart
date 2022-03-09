@@ -11,14 +11,21 @@ class SharedPreferences {
 }
 
 enum Preferences {
-  svnPath,
-  svnUsername,
-  svnPassword,
-  svnProjectPath,
-  svnProjectPersistencePath,
-  mysqlPath,
-  mysqlUsername,
-  mysqlPassword,
   autoLogin,
   welcome,
+
+  svnUsername,
+  svnPassword,
+  svnPath,
+  svnUrl,
+
+  mysqlUsername,
+  mysqlPassword,
+  mysqlPath,
+  persistencePath,
+
+  indicator,
+  displayMode,
+  themeMode,
+  colorIndex,
 }

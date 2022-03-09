@@ -1,8 +1,9 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:fluent/provider/config.dart';
+import 'package:fluent/screens/code/code_page.dart';
+import 'package:fluent/screens/database/database_page.dart';
+import 'package:fluent/utils/logger.dart';
 import 'package:fluent/utils/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 import 'package:system_theme/system_theme.dart';
 
 import 'package:fluent_ui/fluent_ui.dart';
@@ -17,11 +18,11 @@ import 'screens/icons.dart';
 import 'screens/inputs.dart';
 import 'screens/mobile.dart';
 import 'screens/others.dart';
-import 'screens/settings/settings.dart';
+import 'screens/settings/settings_page.dart';
 import 'screens/typography.dart';
 import 'provider/theme.dart';
 
-const String appTitle = 'Fluent UI Showcase for Flutter';
+const String appTitle = 'Assistant';
 
 /// Checks if the current environment is a desktop environment.
 bool get isDesktop {
@@ -44,10 +45,10 @@ void main() async {
 
   setPathUrlStrategy();
 
-  SharedPreferences.init();
+  await Logger.init();
+  await SharedPreferences.init();
 
   if (isDesktop) {
-    await flutter_acrylic.Window.initialize();
     await WindowManager.instance.ensureInitialized();
     windowManager.waitUntilReadyToShow().then((_) async {
       await windowManager.setTitleBarStyle('hidden');
@@ -95,12 +96,6 @@ class MyApp extends StatelessWidget {
               glowFactor: is10footScreen() ? 2.0 : 0.0,
             ),
           ),
-          builder: (context, child) {
-            return Directionality(
-              textDirection: appTheme.textDirection,
-              child: child!,
-            );
-          },
         );
       },
     );
@@ -176,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         }(),
         items: [
+          PaneItemHeader(header: const Text("Assistant")),
           PaneItem(
             icon: const Icon(FluentIcons.code),
             title: const Text('Code'),
@@ -185,6 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text('DataBase'),
           ),
           PaneItemSeparator(),
+          PaneItemHeader(header: const Text("Development")),
           PaneItem(
             icon: const Icon(FluentIcons.checkbox_composite),
             title: const Text('Inputs'),
@@ -193,7 +190,6 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(FluentIcons.text_field),
             title: const Text('Forms'),
           ),
-          PaneItemSeparator(),
           PaneItem(
             icon: const Icon(FluentIcons.color),
             title: const Text('Colors'),
@@ -225,17 +221,63 @@ class _MyHomePageState extends State<MyHomePage> {
         autoSuggestBox: AutoSuggestBox(
           controller: TextEditingController(),
           items: const [
+            'Code',
+            'DataBase',
             'Inputs',
             'Forms',
             'Colors',
             'Icons',
             'Typhography',
             'Mobile',
-            'Other'
+            'Other',
+            'Settings',
+            'Source code'
           ],
           onSelected: (str) {
             setState(() {
-              index = 3;
+              if (str == 'Code') {
+                index = 0;
+                return;
+              }
+              if (str == 'DataBase') {
+                index = 1;
+                return;
+              }
+              if (str == 'Inputs') {
+                index = 2;
+                return;
+              }
+              if (str == 'Forms') {
+                index = 3;
+                return;
+              }
+              if (str == 'Colors') {
+                index = 4;
+                return;
+              }
+              if (str == 'Icons') {
+                index = 5;
+                return;
+              }
+              if (str == 'Typhography') {
+                index = 6;
+                return;
+              }
+              if (str == 'Mobile') {
+                index = 7;
+                return;
+              }
+              if (str == 'Other') {
+                index = 8;
+                return;
+              }
+              if (str == 'Settings') {
+                index = 9;
+                return;
+              }
+              if (str == 'Source code') {
+                return;
+              }
             });
           },
         ),
@@ -249,13 +291,13 @@ class _MyHomePageState extends State<MyHomePage> {
           _LinkPaneItemAction(
             icon: const Icon(FluentIcons.open_source),
             title: const Text('Source code'),
-            link: 'https://github.com/bdlukaa/fluent_ui',
+            link: 'https://github.com/azqazq195/assistant',
           ),
         ],
       ),
       content: NavigationBody(index: index, children: [
-        const InputsPage(),
-        const InputsPage(),
+        const CodePage(),
+        const DatabasePage(),
         const InputsPage(),
         const Forms(),
         const ColorsPage(),

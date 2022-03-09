@@ -1,8 +1,11 @@
+import 'package:fluent/utils/utils.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:provider/provider.dart';
+import 'package:file_picker/file_picker.dart';
 
 import 'package:fluent/provider/config.dart';
 import 'package:fluent/provider/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const List<String> accentColorNames = [
   'System',
@@ -16,6 +19,8 @@ const List<String> accentColorNames = [
   'Green',
 ];
 
+const _svnDownloadurl = "https://tortoisesvn.net/downloads.html";
+
 class Settings extends StatefulWidget {
   const Settings({Key? key, this.controller}) : super(key: key);
 
@@ -26,7 +31,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  bool _showPassword = false;
+  bool _showSvnPassword = false;
+  bool _showMySqlPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,35 +63,52 @@ class _SettingsState extends State<Settings> {
         );
       }
     }());
-    const spacer = SizedBox(height: 10.0);
-    const biggerSpacer = SizedBox(height: 40.0);
 
-    final svnPathController = TextEditingController();
     final svnUsernameController = TextEditingController();
     final svnPasswordController = TextEditingController();
-    final mysqlPathController = TextEditingController();
+    final svnPathController = TextEditingController();
+    final svnUrlController = TextEditingController();
+
     final mysqlUsernameController = TextEditingController();
     final mysqlPasswordController = TextEditingController();
+    final mysqlPathController = TextEditingController();
+    final persistencePathController = TextEditingController();
 
     return ChangeNotifierProvider(
       create: (_) => Config(),
       builder: (context, _) {
         final config = context.watch<Config>();
 
-        svnPathController.text = config.svnPath;
         svnUsernameController.text = config.svnUsername;
         svnPasswordController.text = config.svnPassword;
-        mysqlPathController.text = config.mysqlPath;
+        svnPathController.text = config.svnPath;
+        svnUrlController.text = config.svnUrl;
+
         mysqlUsernameController.text = config.mySqlUsername;
         mysqlPasswordController.text = config.mysqlPassword;
+        mysqlPathController.text = config.mysqlPath;
+        persistencePathController.text = config.persistencePath;
 
         return ScaffoldPage.scrollable(
           header: const PageHeader(title: Text('Settings')),
           scrollController: widget.controller,
           children: [
-            Text('SubVersion',
-                style: FluentTheme.of(context).typography.subtitle),
-            spacer,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('SubVersion',
+                    style: FluentTheme.of(context).typography.subtitle),
+                Button(
+                  child: const Text('Download'),
+                  onPressed: () async {
+                    if (!await launch(_svnDownloadurl)) {
+                      throw 'Could not launch $_svnDownloadurl';
+                    }
+                  },
+                ),
+              ],
+            ),
+            spacerH,
             Row(
               children: [
                 Expanded(
@@ -103,16 +126,10 @@ class _SettingsState extends State<Settings> {
                       child: SizedBox(
                         width: 80,
                         child: Button(
-                          child: const Text('Done'),
+                          child: const Text('Save'),
                           onPressed: () {
                             config.svnUsername = svnUsernameController.text;
-                            showSnackbar(
-                              context,
-                              const Snackbar(
-                                content: Text('Username 저장 완료!'),
-                              ),
-                              alignment: Alignment.bottomRight,
-                            );
+                            snackbar(context, "User Name 저장 완료!");
                           },
                         ),
                       ),
@@ -125,24 +142,27 @@ class _SettingsState extends State<Settings> {
                     header: 'Password',
                     placeholder: 'Type your Password',
                     controller: svnPasswordController,
-                    obscureText: !_showPassword,
+                    obscureText: !_showSvnPassword,
                     maxLines: 1,
                     suffixMode: OverlayVisibilityMode.always,
                     suffix: IconButton(
                       icon: Icon(
-                        !_showPassword ? FluentIcons.lock : FluentIcons.unlock,
+                        !_showSvnPassword
+                            ? FluentIcons.lock
+                            : FluentIcons.unlock,
                       ),
                       onPressed: () =>
-                          setState(() => _showPassword = !_showPassword),
+                          setState(() => _showSvnPassword = !_showSvnPassword),
                     ),
                     outsideSuffix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: SizedBox(
                         width: 80,
                         child: Button(
-                          child: const Text('Done'),
+                          child: const Text('Save'),
                           onPressed: () {
                             config.svnPassword = svnPasswordController.text;
+                            snackbar(context, "Password 저장 완료!");
                           },
                         ),
                       ),
@@ -151,7 +171,7 @@ class _SettingsState extends State<Settings> {
                 ),
               ],
             ),
-            spacer,
+            spacerH,
             TextBox(
               header: 'Subversion path',
               placeholder: "C:\\Program Files (x86)\\Subversion\\bin",
@@ -160,7 +180,7 @@ class _SettingsState extends State<Settings> {
               textInputAction: TextInputAction.next,
               prefix: const Padding(
                 padding: EdgeInsetsDirectional.only(start: 8.0),
-                child: Icon(FluentIcons.people),
+                child: Icon(FluentIcons.fabric_folder),
               ),
               outsideSuffix: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -168,14 +188,49 @@ class _SettingsState extends State<Settings> {
                   width: 80,
                   child: Button(
                     child: const Text('Change'),
-                    onPressed: () {},
+                    onPressed: () async {
+                      String? directoryPath =
+                          await FilePicker.platform.getDirectoryPath();
+                      if (directoryPath == null) {
+                        snackbar(context, "선택 취소.");
+                      } else {
+                        svnPathController.text = directoryPath;
+                        config.svnPath = svnPathController.text;
+                        snackbar(context, "Path 저장 완료!");
+                      }
+                    },
                   ),
                 ),
               ),
             ),
-            biggerSpacer,
+            spacerH,
+            TextBox(
+              header: 'Subversion Url',
+              placeholder:
+                  "https://intranet-fs.csttec.com:5443/svn/cstone/server/trunk/server_DevTrunk",
+              controller: svnUrlController,
+              textInputAction: TextInputAction.next,
+              prefix: const Padding(
+                padding: EdgeInsetsDirectional.only(start: 8.0),
+                child: Icon(FluentIcons.link),
+              ),
+              outsideSuffix: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: SizedBox(
+                  width: 80,
+                  child: Button(
+                    child: const Text('Save'),
+                    onPressed: () {
+                      config.svnUrl = svnUrlController.text;
+                      snackbar(context, "Url 저장 완료!");
+                    },
+                  ),
+                ),
+              ),
+            ),
+            biggerSpacerH,
             Text('Mysql', style: FluentTheme.of(context).typography.subtitle),
-            spacer,
+            spacerH,
             Row(
               children: [
                 Expanded(
@@ -193,9 +248,10 @@ class _SettingsState extends State<Settings> {
                       child: SizedBox(
                         width: 80,
                         child: Button(
-                          child: const Text('Done'),
+                          child: const Text('Save'),
                           onPressed: () {
                             config.mysqlUsername = mysqlUsernameController.text;
+                            snackbar(context, "User Name 저장 완료!");
                           },
                         ),
                       ),
@@ -208,24 +264,27 @@ class _SettingsState extends State<Settings> {
                     header: 'Password',
                     placeholder: 'Type your Password',
                     controller: mysqlPasswordController,
-                    obscureText: !_showPassword,
+                    obscureText: !_showMySqlPassword,
                     maxLines: 1,
                     suffixMode: OverlayVisibilityMode.always,
                     suffix: IconButton(
                       icon: Icon(
-                        !_showPassword ? FluentIcons.lock : FluentIcons.unlock,
+                        !_showMySqlPassword
+                            ? FluentIcons.lock
+                            : FluentIcons.unlock,
                       ),
-                      onPressed: () =>
-                          setState(() => _showPassword = !_showPassword),
+                      onPressed: () => setState(
+                          () => _showMySqlPassword = !_showMySqlPassword),
                     ),
                     outsideSuffix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: SizedBox(
                         width: 80,
                         child: Button(
-                          child: const Text('Done'),
+                          child: const Text('Save'),
                           onPressed: () {
                             config.mysqlPassword = mysqlPasswordController.text;
+                            snackbar(context, "Password 저장 완료!");
                           },
                         ),
                       ),
@@ -234,34 +293,75 @@ class _SettingsState extends State<Settings> {
                 ),
               ],
             ),
-            spacer,
-            Expanded(
-              child: TextBox(
-                header: 'MySql path',
-                placeholder: "C:\\Program Files\\MariaDB 10.5\\bin",
-                controller: mysqlPathController,
-                readOnly: true,
-                textInputAction: TextInputAction.next,
-                prefix: const Padding(
-                  padding: EdgeInsetsDirectional.only(start: 8.0),
-                  child: Icon(FluentIcons.people),
-                ),
-                outsideSuffix: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: SizedBox(
-                    width: 80,
-                    child: Button(
-                      child: const Text('Change'),
-                      onPressed: () {},
-                    ),
+            spacerH,
+            TextBox(
+              header: 'MySql path',
+              placeholder: "C:\\Program Files\\MariaDB 10.5\\bin",
+              controller: mysqlPathController,
+              readOnly: true,
+              textInputAction: TextInputAction.next,
+              prefix: const Padding(
+                padding: EdgeInsetsDirectional.only(start: 8.0),
+                child: Icon(FluentIcons.fabric_folder),
+              ),
+              outsideSuffix: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: SizedBox(
+                  width: 80,
+                  child: Button(
+                    child: const Text('Change'),
+                    onPressed: () async {
+                      String? directoryPath =
+                          await FilePicker.platform.getDirectoryPath();
+                      if (directoryPath == null) {
+                        snackbar(context, "선택 취소.");
+                      } else {
+                        mysqlPathController.text = directoryPath;
+                        config.mysqlPath = mysqlPathController.text;
+                        snackbar(context, "Path 저장 완료!");
+                      }
+                    },
                   ),
                 ),
               ),
             ),
-            biggerSpacer,
+            spacerH,
+            TextBox(
+              header: 'Persistence path',
+              placeholder:
+                  "C:\\Users\\azqaz\\Documents\\Assistant\\server_DevTrunk\\src\\main\\resources\\com\\csttec\\server\\persistence",
+              controller: persistencePathController,
+              readOnly: true,
+              textInputAction: TextInputAction.next,
+              prefix: const Padding(
+                padding: EdgeInsetsDirectional.only(start: 8.0),
+                child: Icon(FluentIcons.fabric_folder),
+              ),
+              outsideSuffix: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: SizedBox(
+                  width: 80,
+                  child: Button(
+                    child: const Text('Change'),
+                    onPressed: () async {
+                      String? directoryPath =
+                          await FilePicker.platform.getDirectoryPath();
+                      if (directoryPath == null) {
+                        snackbar(context, "선택 취소.");
+                      } else {
+                        persistencePathController.text = directoryPath;
+                        config.persistencePath = persistencePathController.text;
+                        snackbar(context, "Path 저장 완료!");
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ),
+            biggerSpacerH,
             Text('Theme mode',
                 style: FluentTheme.of(context).typography.subtitle),
-            spacer,
+            spacerH,
             ...List.generate(ThemeMode.values.length, (index) {
               final mode = ThemeMode.values[index];
               return Padding(
@@ -277,12 +377,12 @@ class _SettingsState extends State<Settings> {
                 ),
               );
             }),
-            biggerSpacer,
+            biggerSpacerH,
             Text(
               'Navigation Pane Display Mode',
               style: FluentTheme.of(context).typography.subtitle,
             ),
-            spacer,
+            spacerH,
             ...List.generate(PaneDisplayMode.values.length, (index) {
               final mode = PaneDisplayMode.values[index];
               return Padding(
@@ -298,10 +398,10 @@ class _SettingsState extends State<Settings> {
                 ),
               );
             }),
-            biggerSpacer,
+            biggerSpacerH,
             Text('Navigation Indicator',
                 style: FluentTheme.of(context).typography.subtitle),
-            spacer,
+            spacerH,
             ...List.generate(NavigationIndicators.values.length, (index) {
               final mode = NavigationIndicators.values[index];
               return Padding(
@@ -317,14 +417,14 @@ class _SettingsState extends State<Settings> {
                 ),
               );
             }),
-            biggerSpacer,
+            biggerSpacerH,
             Text('Accent Color',
                 style: FluentTheme.of(context).typography.subtitle),
-            spacer,
+            spacerH,
             Wrap(children: [
               Tooltip(
                 style: tooltipThemeData,
-                child: _buildColorBlock(appTheme, systemAccentColor),
+                child: _buildColorBlock(appTheme, systemAccentColor, 0),
                 message: accentColorNames[0],
               ),
               ...List.generate(Colors.accentColors.length, (index) {
@@ -332,7 +432,7 @@ class _SettingsState extends State<Settings> {
                 return Tooltip(
                   style: tooltipThemeData,
                   message: accentColorNames[index + 1],
-                  child: _buildColorBlock(appTheme, color),
+                  child: _buildColorBlock(appTheme, color, index + 1),
                 );
               }),
             ]),
@@ -342,12 +442,13 @@ class _SettingsState extends State<Settings> {
     );
   }
 
-  Widget _buildColorBlock(AppTheme appTheme, AccentColor color) {
+  Widget _buildColorBlock(
+      AppTheme appTheme, AccentColor color, int colorIndex) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Button(
         onPressed: () {
-          appTheme.color = color;
+          appTheme.colorIndex = colorIndex;
         },
         style: ButtonStyle(padding: ButtonState.all(EdgeInsets.zero)),
         child: Container(

@@ -33,6 +33,16 @@ class Config extends ChangeNotifier {
     notifyListeners();
   }
 
+  String _persistencePath =
+      SharedPreferences.prefs.getString(Preferences.persistencePath.name) ?? '';
+  String get persistencePath => _persistencePath;
+  set persistencePath(String persistencePath) {
+    _persistencePath = persistencePath;
+    SharedPreferences.prefs
+        .setString(Preferences.persistencePath.name, persistencePath);
+    notifyListeners();
+  }
+
   String _svnUsername =
       SharedPreferences.prefs.getString(Preferences.svnUsername.name) ?? '';
   String get svnUsername => _svnUsername;
@@ -59,6 +69,15 @@ class Config extends ChangeNotifier {
   set svnPath(String svnPath) {
     _svnPath = svnPath;
     SharedPreferences.prefs.setString(Preferences.svnPath.name, svnPath);
+    notifyListeners();
+  }
+
+  String _svnUrl =
+      SharedPreferences.prefs.getString(Preferences.svnUrl.name) ?? '';
+  String get svnUrl => _svnUrl;
+  set svnUrl(String svnUrl) {
+    _svnUrl = svnUrl;
+    SharedPreferences.prefs.setString(Preferences.svnUrl.name, svnUrl);
     notifyListeners();
   }
 }

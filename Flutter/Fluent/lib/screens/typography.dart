@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 
-import 'settings/settings.dart';
+import 'settings/settings_page.dart';
 
 class TypographyPage extends StatefulWidget {
   const TypographyPage({Key? key}) : super(key: key);
@@ -90,7 +90,7 @@ class _TypographyPageState extends State<TypographyPage> {
                   children: [
                     Text('Display',
                         style:
-                        typography.display?.apply(fontSizeFactor: scale)),
+                            typography.display?.apply(fontSizeFactor: scale)),
                     spacer,
                     Text('Title Large',
                         style: typography.titleLarge
@@ -101,11 +101,11 @@ class _TypographyPageState extends State<TypographyPage> {
                     spacer,
                     Text('Subtitle',
                         style:
-                        typography.subtitle?.apply(fontSizeFactor: scale)),
+                            typography.subtitle?.apply(fontSizeFactor: scale)),
                     spacer,
                     Text('Body Large',
                         style:
-                        typography.bodyLarge?.apply(fontSizeFactor: scale)),
+                            typography.bodyLarge?.apply(fontSizeFactor: scale)),
                     spacer,
                     Text('Body Strong',
                         style: typography.bodyStrong
@@ -116,7 +116,7 @@ class _TypographyPageState extends State<TypographyPage> {
                     spacer,
                     Text('Caption',
                         style:
-                        typography.caption?.apply(fontSizeFactor: scale)),
+                            typography.caption?.apply(fontSizeFactor: scale)),
                     spacer,
                   ],
                 ),

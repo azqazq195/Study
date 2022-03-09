@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:fluent/main.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart' as log;
 import 'package:path_provider/path_provider.dart';
@@ -21,14 +22,18 @@ class Logger {
 
   static Future<String> get _localPath async {
     final document = await getApplicationDocumentsDirectory();
-    final directory = Directory('${document.path}/assistant');
-    directory.create();
+    final directory = Directory('${document.path}/$appTitle');
+    if (!await directory.exists()) {
+      directory.create();
+    }
     return directory.path;
   }
 
   static Future<File> get _logTxt async {
     final directory = Directory('$localDirectory/log');
-    directory.create();
+    if (!await directory.exists()) {
+      directory.create();
+    }
     String date = DateFormat('yyyy-MM-dd').format(DateTime.now());
     return File('${directory.path}/$date.txt');
   }

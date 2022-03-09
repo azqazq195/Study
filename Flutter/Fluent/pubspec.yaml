@@ -42,12 +42,17 @@ dependencies:
   shared_preferences: ^2.0.13
   logger: ^1.1.0
   path_provider: ^2.0.5
+  file_picker: ^4.5.0
+  process_run: ^0.12.3+2
+  retrofit: ^2.0.1
+  json_annotation: ^4.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_native_splash: ^1.1.7+1
   flutter_lints: ^1.0.0
+  retrofit_generator: ^2.0.1+2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
