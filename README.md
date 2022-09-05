@@ -6,7 +6,7 @@
 
 # Spring Boot
 
-### [JPA Converter](https://github.com/azqazq195/Study/tree/master/spring-boot/converter)
+### [converter](https://github.com/azqazq195/Study/tree/master/spring-boot/converter)
 
 ### [filter-interceptor-aop](https://github.com/azqazq195/Study/tree/master/spring-boot/filter-interceptor-aop)
 
