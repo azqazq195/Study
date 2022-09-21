@@ -3,6 +3,7 @@ package com.example.validation.dto;
 import lombok.*;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -12,6 +13,7 @@ public class CreateMember {
     private String name;
     @Email
     private String email;
+    @NotBlank
     private String password;
     private String phone;
     private String regNo;
