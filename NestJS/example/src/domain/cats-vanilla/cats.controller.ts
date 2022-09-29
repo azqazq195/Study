@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, 
 import { CreateCatDto, ListAllEntities, UpdateCatDto } from './dto';
 import { Response } from 'express';
 
-@Controller('cats')
+@Controller('cats-vanilla')
 export class CatsController {
     @Post()
     create(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
