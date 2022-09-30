@@ -1,24 +1,36 @@
-interface Pointlike {
-  x: number;
-  y: number;
+interface Square {
+  kind: "square";
+  size: number;
 }
-interface Named {
-  name: string;
+interface Rectangle {
+  kind: "rectangle";
+  width: number;
+  height: number;
+}
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+function assertNever(x: never): never {
+  throw new Error("Unexpected object: " + x);
+}
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+  switch (s.kind) {
+    case "square":
+      return s.size * s.size;
+    case "rectangle":
+      return s.height * s.width;
+    case "circle":
+      return Math.PI * s.radius ** 2;
+    default:
+      return assertNever(s); // 빠진 케이스가 있다면 여기서 오류 발생
+  }
 }
 
-function printPoint(point: Pointlike) {
-  console.log("x = " + point.x + ", y = " + point.y);
-}
-
-function printName(x: Named) {
-  console.log("Hello, " + x.name);
-}
-
-const obj = {
-  x: 0,
-  y: 0,
-  name: "Origin",
+const square: Square = {
+  size: 3,
 };
 
-printPoint(obj);
-printName(obj);
+console.log(area());
