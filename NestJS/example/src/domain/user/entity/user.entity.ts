@@ -1,7 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 
-@Entity()
+@Entity({
+  name: 'users',
+})
 export class UserEntity {
   @PrimaryGeneratedColumn()
   readonly id: number;
