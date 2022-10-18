@@ -1,10 +1,9 @@
-import { CreateDateColumn, DeleteDateColumn, UpdateDateColumn } from 'typeorm';
-import { DateTimeString } from '../utils/dayjs';
+import { DateTimeString } from '../../utils/dayjs';
 import {
   CreatedAtBaseColumn,
   DeletedAtBaseColumn,
   UpdatedAtBaseColumn,
-} from '../decorators/column/base-date-column';
+} from '../../decorators/column/base-date-column';
 
 export class BaseTimeEntity {
   @CreatedAtBaseColumn({

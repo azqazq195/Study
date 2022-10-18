@@ -3,7 +3,7 @@ import { Expose, plainToClass } from 'class-transformer';
 import { JoinColumn } from 'typeorm';
 import { UpdateProductDto } from '../controller/dto/updateProduct.dto';
 import { CreateProductDto } from '../controller/dto/createProduct.dto';
-import { BaseEntity } from '../../../shared/base.entity';
+import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
 import { BrandEntity } from '../../brand/entity/brand.entity';
 
 type Mutable<Type> = {
@@ -13,7 +13,7 @@ type Mutable<Type> = {
 @Entity({
   name: 'products',
 })
-export class ProductEntity extends BaseEntity {
+export class ProductEntity extends BaseTimeEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',

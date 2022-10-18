@@ -1,7 +1,7 @@
 import { Connection, createConnection } from 'typeorm';
-import { UserEntity } from '../domain/user/entity/user.entity';
-import { ProductEntity } from '../domain/product/entity/product.entity';
-import { BrandEntity } from '../domain/brand/entity/brand.entity';
+import { UserEntity } from '../../domain/user/entity/user.entity';
+import { ProductEntity } from '../../domain/product/entity/product.entity';
+import { BrandEntity } from '../../domain/brand/entity/brand.entity';
 
 export class TestHelper {
   private static _instance: TestHelper;
