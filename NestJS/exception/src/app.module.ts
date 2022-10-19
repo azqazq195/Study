@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ExceptionFilterModule } from './exception/exception-filter.module';
+import { FilterModule } from './filter/filter.module';
+import { PipeModule } from './pipe/pipe.module';
 
 @Module({
-  imports: [ExceptionFilterModule],
+  imports: [FilterModule, PipeModule],
   controllers: [AppController],
   providers: [AppService],
 })

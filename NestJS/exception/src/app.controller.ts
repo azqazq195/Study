@@ -1,10 +1,23 @@
-import { BadRequestException, Controller, Get } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { BadRequestMessage } from './exception/message/bad-request-message';
+import { BadRequestMessage } from './filter/message/bad-request-message';
+import { CreateEntityDto } from './dto/create-entity.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
+
+  @Post()
+  createEntity(@Body() createEntity: CreateEntityDto): string {
+    console.log(createEntity);
+    return 'good';
+  }
 
   @Get()
   getHello(): string {

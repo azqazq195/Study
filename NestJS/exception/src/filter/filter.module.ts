@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { UnhandledExceptionFilter } from './filter/unhandled-exception.filter';
-import { ErrorFilter } from './filter/error.filter';
-import { HttpExceptionFilter } from './filter/http-exception.filter';
+import { UnhandledExceptionFilter } from './filters/unhandled-exception.filter';
+import { ErrorFilter } from './filters/error.filter';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 
 @Module({
   providers: [
@@ -20,4 +20,4 @@ import { HttpExceptionFilter } from './filter/http-exception.filter';
     },
   ],
 })
-export class ExceptionFilterModule {}
+export class FilterModule {}
