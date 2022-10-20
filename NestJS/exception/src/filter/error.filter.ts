@@ -5,7 +5,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { buildErrorResponse } from '../exception-response';
+import { buildErrorResponse } from '../exception/exception-response';
 
 // ! 에러 발생은 HttpException 을 활용한다.
 // ! 기존 Error 처리를 위한 filters

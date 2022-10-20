@@ -15,6 +15,8 @@ export class GlobalValidationPipe extends ValidationPipe {
     try {
       return await super.transform(value, metadata);
     } catch (e) {
+      // ! try catch하지 말고 filter에서 처리하자
+      // ! Exception을 두번 던짐
       if (e instanceof BadRequestException) {
         const response = e.getResponse();
         const messages = response['message'];

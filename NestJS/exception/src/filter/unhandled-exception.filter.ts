@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
 import { Response } from 'express';
-import { buildUnHandledResponse } from '../exception-response';
+import { buildUnHandledResponse } from '../exception/exception-response';
 
 @Catch()
 export class UnhandledExceptionFilter implements ExceptionFilter {

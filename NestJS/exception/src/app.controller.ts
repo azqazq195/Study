@@ -6,7 +6,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { BadRequestMessage } from './filter/message/bad-request-message';
+import { BadRequestMessage } from './exception/message/bad-request-message';
 import { CreateEntityDto } from './dto/create-entity.dto';
 
 @Controller()
