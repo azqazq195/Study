@@ -7,7 +7,7 @@ YELLOW="\033[1;33""m"
 PINK="\033[1;35""m"
 NC="\033[0m"
 
-CHECK_BRANCH="master"
+CHECK_BRANCH="dev"
 
 # 현재 브랜치 확인
 echo "${GREEN} > check '$CHECK_BRANCH' branch${NC}"
@@ -29,6 +29,12 @@ git pull
 DONE=0
 while [ $DONE != 1 ]
 do
+    echo "${GREEN} > input jira issue key${NC}"
+    echo "   ex)"
+    echo "      CT2-1085"
+    read -r  ISSUE_KEY
+
+    echo ""
     echo "${GREEN} > input branch name${NC}"
     echo "   ex)"
     echo "      feat-product"
@@ -36,7 +42,7 @@ do
     echo "      fix-product"
     read -r SUBJECT
 
-    BRANCH_NAME="${SUBJECT}"
+    BRANCH_NAME="${ISSUE_KEY}@${SUBJECT}"
     echo ""
     echo "${PINK} > your branch name is '${BRANCH_NAME}'${NC}"
     echo ""
