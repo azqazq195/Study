@@ -1,8 +1,10 @@
 package com.example.filterinterceptoraop.config.interceptor;
 
+import com.example.filterinterceptoraop.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,6 +13,9 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -32,6 +37,25 @@ public class LoggingInterceptor implements HandlerInterceptor {
         log.info("[INTERCEPTOR] preHandle [{}] {}, param: '{}'", request.getMethod(), request.getRequestURI(), request.getQueryString());
         log.info("------------- request body: {}", requestBody);
         log.info("------------- response body: {}", responseBody);
+
+        try {
+            String auth = request.getHeader("Authorization");
+            String type = auth.split(" ")[0];
+            if (!type.equals("Bearer")) {
+                throw new RuntimeException("Token type is not 'Bearer'");
+            }
+            String accessToken = auth.split(" ")[1];
+            byte[] decoded = Base64.getDecoder().decode(accessToken);
+            String str = new String(decoded, StandardCharsets.UTF_8);
+            User user = objectMapper.readValue(str, User.class);
+//        request.setAttribute("AuthorizedUser", AuthorizedUser);
+//            return true;
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return false;
+        }
+
+
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 
