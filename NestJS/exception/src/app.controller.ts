@@ -15,7 +15,6 @@ export class AppController {
 
   @Post()
   createEntity(@Body() createEntity: CreateEntityDto): string {
-    console.log(createEntity);
     return 'good';
   }
 

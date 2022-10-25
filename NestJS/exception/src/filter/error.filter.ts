@@ -14,7 +14,6 @@ export class ErrorFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost): any {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    console.log('error');
     response.status(HttpStatus.BAD_REQUEST).json(buildErrorResponse(exception));
   }
 }

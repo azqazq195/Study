@@ -7,7 +7,6 @@ export class UnhandledExceptionFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost): any {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    console.log('unhandled-filter');
     response
       .status(exception.INTERNAL_SERVER_ERROR)
       .json(buildUnHandledResponse());
