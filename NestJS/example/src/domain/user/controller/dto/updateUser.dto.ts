@@ -1,20 +1,4 @@
-import { UserEntity } from '../../entity/user.entity';
-import { IsNumber, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './createUser.dto';
 
-export class UpdateUserDto {
-  @IsNumber()
-  readonly id!: number;
-
-  @IsString()
-  readonly firstName!: string;
-
-  @IsString()
-  readonly lastName!: string;
-
-  @IsNumber()
-  readonly age!: number;
-
-  toUserEntity(): UserEntity {
-    return UserEntity.from(this);
-  }
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}

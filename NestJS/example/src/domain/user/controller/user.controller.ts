@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -18,7 +19,7 @@ export class UserController {
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<UserEntity> {
-    return this.userService.findOne(id);
+    return await this.userService.findOne(id);
   }
 
   @Get()
@@ -27,13 +28,21 @@ export class UserController {
   }
 
   @Post()
-  async save(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-    return this.userService.save(createUserDto.toUserEntity());
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+    return this.userService.create(createUserDto);
   }
 
-  @Put()
-  async update(@Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
-    return this.userService.save(updateUserDto.toUserEntity());
+  // @Patch(':id')
+  // async patch(@Body() updateUserDto: UpdateUserDto): Promise<UserEntity> {
+  //   return this.userService.save(updateUserDto as CreateUserDto);
+  // }
+
+  @Put(':id')
+  async put(
+    @Param('id') id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ): Promise<UserEntity> {
+    return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')

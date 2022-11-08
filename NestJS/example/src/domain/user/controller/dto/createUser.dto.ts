@@ -1,17 +1,15 @@
-import { UserEntity } from '../../entity/user.entity';
-import { IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
-  readonly firstName!: string;
+  readonly firstName: string;
 
   @IsString()
-  readonly lastName!: string;
+  readonly lastName: string;
 
   @IsNumber()
-  readonly age!: number;
+  readonly age: number;
 
-  toUserEntity(): UserEntity {
-    return UserEntity.from(this);
-  }
+  @IsArray()
+  readonly roleIds: number[];
 }
