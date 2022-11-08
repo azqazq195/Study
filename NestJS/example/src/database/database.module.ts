@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../domain/user/entity/user.entity';
 import { ProductEntity } from '../domain/product/entity/product.entity';
 import { BrandEntity } from '../domain/brand/entity/brand.entity';
+import { RoleEntity } from '../domain/user/entity/role.entity';
 
 @Module({
   imports: [
@@ -14,9 +15,9 @@ import { BrandEntity } from '../domain/brand/entity/brand.entity';
       password: '',
       database: 'test',
       // entities: [`${__dirname}/domain/user/entity/*.js`],
-      entities: [UserEntity, ProductEntity, BrandEntity],
+      entities: [UserEntity, ProductEntity, BrandEntity, RoleEntity],
       synchronize: true,
-      // logging: true,
+      logging: true,
       dropSchema: true,
       connectTimeout: 3000,
     }),
