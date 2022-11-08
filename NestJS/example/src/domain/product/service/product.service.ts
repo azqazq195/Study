@@ -25,7 +25,7 @@ export class ProductService {
 
   @Transactional()
   async insert(createProductDto: CreateProductDto): Promise<ProductEntity> {
-    return this.productRepository.save(createProductDto.toProductEntity());
+    return this.productRepository.save(createProductDto);
   }
 
   @Transactional()

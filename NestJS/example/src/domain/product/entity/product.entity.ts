@@ -11,7 +11,7 @@ type Mutable<Type> = {
 };
 
 @Entity({
-  name: 'products',
+  name: 'product',
 })
 export class ProductEntity extends BaseTimeEntity {
   @PrimaryGeneratedColumn({

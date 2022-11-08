@@ -9,13 +9,10 @@ import {
 } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 import { ProductEntity } from '../../product/entity/product.entity';
-
-type Mutable<Type> = {
-  -readonly [Key in keyof Type]: Type[Key];
-};
+import { Mutable } from '../../../shared/utils/mutable.type';
 
 @Entity({
-  name: 'brands',
+  name: 'brand',
 })
 export class BrandEntity {
   @PrimaryGeneratedColumn({
