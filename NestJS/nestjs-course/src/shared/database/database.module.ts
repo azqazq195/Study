@@ -15,6 +15,7 @@ import { Module } from '@nestjs/common';
 
       logging: true,
       connectTimeout: 3000,
+      dropSchema: true,
     }),
   ],
 })
