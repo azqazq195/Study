@@ -1,4 +1,4 @@
-import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseColumn } from '../../../shared/decorators/column/base-column';
 import { DATABASE_ENGINE } from '../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
@@ -25,6 +25,7 @@ export class RoleEntity extends BaseTimeEntity {
   readonly name!: string;
 
   @ManyToMany(() => UserEntity, (user) => user.roles, {
+    nullable: true,
     lazy: false,
   })
   readonly users!: UserEntity[];
