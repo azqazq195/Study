@@ -11,10 +11,12 @@ export class GlobalValidationPipe extends ValidationPipe {
       whitelist: true,
       forbidNonWhitelisted: true,
 
-      stopAtFirstError: true,
+      // DTO Property 의 타입에 맞게 자동 형변환
       transformOptions: {
         enableImplicitConversion: true,
       },
+
+      stopAtFirstError: true,
     });
   }
 }
