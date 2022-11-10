@@ -8,7 +8,7 @@ import { UserEntity } from './user.entity';
   name: 'role',
   engine: DATABASE_ENGINE,
 })
-export class RoleEntity extends BaseTimeEntity {
+export class UserRoleEntity extends BaseTimeEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',

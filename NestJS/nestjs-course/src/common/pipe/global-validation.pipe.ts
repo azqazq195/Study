@@ -12,6 +12,9 @@ export class GlobalValidationPipe extends ValidationPipe {
       forbidNonWhitelisted: true,
 
       stopAtFirstError: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     });
   }
 }

@@ -1,10 +1,10 @@
 import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Exclude, plainToClass } from 'class-transformer';
+import { plainToClass } from 'class-transformer';
 import { UserResource } from './type/user.type';
 import { BaseColumn } from '../../../shared/decorators/column/base-column';
 import { DATABASE_ENGINE } from '../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
-import { RoleEntity } from './role.entity';
+import { UserRoleEntity } from './user-role.entity';
 import { Mutable } from '../../../shared/utils/mutable.type';
 
 @Entity({
@@ -42,17 +42,18 @@ export class UserEntity extends BaseTimeEntity implements UserResource {
   })
   readonly age!: number;
 
-  @ManyToMany(() => RoleEntity, (role) => role.users, {
+  @ManyToMany(() => UserRoleEntity, (role) => role.users, {
+    nullable: true,
     lazy: false,
   })
   @JoinTable()
-  readonly roles!: RoleEntity[];
+  readonly roles!: UserRoleEntity[];
 
-  public addRole(role: RoleEntity): void {
+  public addRole(role: UserRoleEntity): void {
     this.roles.push(role);
   }
 
-  public changeRoles(roles: RoleEntity[]): void {
+  public changeRoles(roles: UserRoleEntity[]): void {
     const mutableThis = this as Mutable<UserEntity>;
     mutableThis.roles = roles;
   }

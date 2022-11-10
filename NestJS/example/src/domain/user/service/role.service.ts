@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RoleEntity } from '../entity/role.entity';
+import { UserRoleEntity } from '../entity/user-role.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class RoleService {
   constructor(
-    @InjectRepository(RoleEntity)
-    private readonly roleRepository: Repository<RoleEntity>,
+    @InjectRepository(UserRoleEntity)
+    private readonly roleRepository: Repository<UserRoleEntity>,
   ) {
     roleRepository.save({
       id: 1,
@@ -23,7 +23,7 @@ export class RoleService {
     });
   }
 
-  find(ids: number[]): Promise<RoleEntity[]> {
+  find(ids: number[]): Promise<UserRoleEntity[]> {
     return this.roleRepository.findByIds(ids);
   }
 }

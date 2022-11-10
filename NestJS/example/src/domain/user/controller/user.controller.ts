@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Put,
 } from '@nestjs/common';
@@ -12,6 +11,8 @@ import { UserService } from '../service/user.service';
 import { UserEntity } from '../entity/user.entity';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
+import { Roles } from '../../auth/decorator/roles.decorator';
+import { USER_ROLE } from '../entity/type/enum/user-role.enum';
 
 @Controller('users')
 export class UserController {
@@ -28,6 +29,7 @@ export class UserController {
   }
 
   @Post()
+  @Roles(USER_ROLE.오늘의꽃관리자, USER_ROLE.구매자)
   async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
     return this.userService.create(createUserDto);
   }
