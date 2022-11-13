@@ -1,5 +1,5 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -20,3 +20,18 @@ import { Module } from '@nestjs/common';
   ],
 })
 export class DatabaseModule {}
+
+// @Module({})
+// export class DatabaseModule {
+//   static register(options: DataSourceOptions): DynamicModule {
+//     return {
+//       module: DatabaseModule,
+//       providers: [
+//         {
+//           provide: 'CONNECTION',
+//           useValue: new DataSource(options).initialize(),
+//         },
+//       ],
+//     };
+//   }
+// }
