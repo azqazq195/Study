@@ -1,24 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DatabaseModule } from './database/database.module';
+import { GlobalDatabaseModule } from './database/global-database.module';
 import { UserModule } from './domain/user/user.module';
 import { ProductModule } from './domain/product/product.module';
 import { BrandModule } from './domain/brand/brand.module';
-import { ConfigModule } from '@nestjs/config';
+import { GlobalConfigModule } from './config/global-config.module';
 
 @Module({
-  imports: [
-    UserModule,
-    ProductModule,
-    BrandModule,
-
-    DatabaseModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.local.env',
-    }),
-  ],
+  imports: [GlobalDatabaseModule, UserModule, ProductModule, BrandModule],
   controllers: [AppController],
   providers: [AppService],
 })

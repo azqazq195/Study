@@ -1,6 +1,6 @@
 import { ProductService } from './product.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { DatabaseModule } from '../../../database/database.module';
+import { GlobalDatabaseModule } from '../../../database/global-database.module';
 import { ProductModule } from '../product.module';
 import { ProductEntity } from '../entity/product.entity';
 import { BrandEntity } from '../../brand/entity/brand.entity';
@@ -17,7 +17,7 @@ describe('ProductService', () => {
   beforeAll(async () => {
     initializeTransactionalContext();
     module = await Test.createTestingModule({
-      imports: [DatabaseModule, ProductModule, BrandModule],
+      imports: [GlobalDatabaseModule, ProductModule, BrandModule],
     }).compile();
     productService = module.get(ProductService);
     brandService = module.get(BrandService);
