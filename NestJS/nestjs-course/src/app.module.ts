@@ -2,15 +2,18 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeeModule } from './domain/coffee/coffee.module';
-import { DatabaseModule } from './common/database/database.module';
-import { PipeModule } from './common/pipe/pipe.module';
+import { GlobalDatabaseModule } from './common/database/global-database.module';
+import { GlobalPipeModule } from './common/pipe/global-pipe.module';
 import { EventModule } from './domain/event/event.module';
 import { CoffeeRatingModule } from './domain/coffee-rating/coffee-rating.module';
+import { GlobalConfigModule } from './common/config/global-config.module';
 
 @Module({
   imports: [
-    PipeModule,
-    DatabaseModule,
+    GlobalConfigModule,
+    GlobalPipeModule,
+    GlobalDatabaseModule,
+
     CoffeeModule,
     EventModule,
     CoffeeRatingModule,

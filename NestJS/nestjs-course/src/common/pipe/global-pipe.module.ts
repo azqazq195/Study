@@ -10,4 +10,4 @@ import { GlobalValidationPipe } from './global-validation.pipe';
     },
   ],
 })
-export class PipeModule {}
+export class GlobalPipeModule {}
