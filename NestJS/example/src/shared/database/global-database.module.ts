@@ -15,7 +15,7 @@ import { ConfigModule } from '@nestjs/config';
       // entities: [UserEntity, ProductEntity, BrandEntity, UserRoleEntity],
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      // logging: true,
       // dropSchema: true,
       connectTimeout: 3000,
     }),

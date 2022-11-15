@@ -1,7 +1,9 @@
-import { USER_ROLE } from '../../user/entity/type/enum/user-role.enum';
+import { UserEntity } from '../../user/entity/user.entity';
+import { UserRoleEntity } from '../../user/entity/user-role.entity';
 
-export interface RequestUser {
-  id: number;
-  roleIds: USER_ROLE[];
-  name: string;
+export interface RequestUser
+  extends Pick<UserEntity, 'id' | 'userId' | 'name'> {
+  roles: UserRole[];
 }
+
+type UserRole = Pick<UserRoleEntity, 'id' | 'name'>;

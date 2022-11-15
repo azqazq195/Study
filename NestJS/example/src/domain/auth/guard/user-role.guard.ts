@@ -4,7 +4,7 @@ import { RequestUser } from '../entity/request-user.interface';
 import { USER_ROLE } from '../../user/entity/type/enum/user-role.enum';
 
 @Injectable()
-export class RoleGuard implements CanActivate {
+export class UserRoleGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {

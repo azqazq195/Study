@@ -2,10 +2,13 @@ import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
-  readonly firstName: string;
+  readonly userId: string;
 
   @IsString()
-  readonly lastName: string;
+  readonly password: string;
+
+  @IsString()
+  readonly name: string;
 
   @IsNumber()
   readonly age: number;

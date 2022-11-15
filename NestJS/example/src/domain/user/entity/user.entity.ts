@@ -1,6 +1,5 @@
 import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { plainToClass } from 'class-transformer';
-import { UserResource } from './type/user.type';
 import { BaseColumn } from '../../../shared/decorators/column/base-column';
 import { DATABASE_ENGINE } from '../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
@@ -11,7 +10,7 @@ import { Mutable } from '../../../shared/utils/mutable.type';
   name: 'user',
   engine: DATABASE_ENGINE,
 })
-export class UserEntity extends BaseTimeEntity implements UserResource {
+export class UserEntity extends BaseTimeEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -21,33 +20,42 @@ export class UserEntity extends BaseTimeEntity implements UserResource {
 
   @BaseColumn({
     type: 'varchar',
-    name: 'first-name',
-    length: 3,
-    comment: 'first-name',
+    name: 'userId',
+    length: 15,
+    comment: 'user id',
+    unique: true,
   })
-  readonly firstName!: string;
+  readonly userId: string;
 
   @BaseColumn({
     type: 'varchar',
-    name: 'last-name',
-    length: 3,
-    comment: 'last-name',
+    name: 'password',
+    length: 100,
+    comment: 'password',
   })
-  readonly lastName!: string;
+  readonly password: string;
+
+  @BaseColumn({
+    type: 'varchar',
+    name: 'name',
+    length: 15,
+    comment: 'name',
+  })
+  readonly name: string;
 
   @BaseColumn({
     type: 'int',
     name: 'age',
     comment: '나이',
   })
-  readonly age!: number;
+  readonly age: number;
 
   @ManyToMany(() => UserRoleEntity, (role) => role.users, {
     nullable: true,
     lazy: false,
   })
   @JoinTable()
-  readonly roles!: UserRoleEntity[];
+  readonly roles: UserRoleEntity[];
 
   public addRole(role: UserRoleEntity): void {
     this.roles.push(role);

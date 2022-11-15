@@ -1,6 +1,6 @@
-import { RequestUser } from '../entity/request-user.interface';
-import { USER_ROLE } from '../../user/entity/type/enum/user-role.enum';
-import { UserRoleAdminGuard } from './user-role-admin.guard';
+import { RequestUser } from '../../entity/request-user.interface';
+import { USER_ROLE } from '../../../user/entity/type/enum/user-role.enum';
+import { UserRoleAdminGuard } from '../user-role-admin.guard';
 
 describe('user-role admin guard', () => {
   let adminGuard;

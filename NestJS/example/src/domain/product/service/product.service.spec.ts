@@ -1,6 +1,6 @@
 import { ProductService } from './product.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { GlobalDatabaseModule } from '../../../database/global-database.module';
+import { GlobalDatabaseModule } from '../../../shared/database/global-database.module';
 import { ProductModule } from '../product.module';
 import { ProductEntity } from '../entity/product.entity';
 import { BrandEntity } from '../../brand/entity/brand.entity';
@@ -48,10 +48,8 @@ describe('ProductService', () => {
   // }
 
   test('getProductEntity', async () => {
-    const dto = new CreateProductDto('name', 1, 1, 'detail');
-    console.log(dto);
-    const entity = ProductEntity.from(dto);
-    console.log(entity);
+    // const dto = new CreateProductDto('name', 1, 1, 'detail');
+    // const entity = ProductEntity.from(dto);
   });
 
   // test('findOne', async () => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UserEntity } from '../entity/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,8 +26,22 @@ export class UserService {
     );
   }
 
+  findOneByUserId(userId: string): Promise<UserEntity> {
+    return this.userRepository.findOne(
+      { userId: userId },
+      { relations: ['roles'] },
+    );
+  }
+
   @Transactional()
   async create(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const check = await this.userRepository.findOne({
+      userId: createUserDto.userId,
+    });
+    if (check) {
+      throw new BadRequestException('이미 존재하는 유저 아이디 입니다.');
+    }
+
     const user = UserEntity.from(createUserDto);
     const roles = await this.roleService.find(createUserDto.roleIds);
     user.changeRoles(roles);

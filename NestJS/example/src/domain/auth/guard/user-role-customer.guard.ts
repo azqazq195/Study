@@ -4,7 +4,6 @@ import { RequestUser } from '../entity/request-user.interface';
 
 @Injectable()
 export class UserRoleCustomerGuard implements CanActivate {
-  constructor() {}
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
     return this.isCustomer(request.user);
