@@ -1,8 +1,8 @@
 import { Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseColumn } from '../../../shared/decorators/column/base-column';
 import { DATABASE_ENGINE } from '../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
 import { UserEntity } from './user.entity';
+import { BaseColumn } from '../../../shared/decorator/column.decorator';
 
 @Entity({
   name: 'role',

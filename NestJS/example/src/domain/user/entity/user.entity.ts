@@ -1,10 +1,10 @@
 import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { plainToClass } from 'class-transformer';
-import { BaseColumn } from '../../../shared/decorators/column/base-column';
 import { DATABASE_ENGINE } from '../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../shared/base/entity/base-time.entity';
 import { UserRoleEntity } from './user-role.entity';
 import { Mutable } from '../../../shared/utils/mutable.type';
+import { BaseColumn } from '../../../shared/decorator/column.decorator';
 
 @Entity({
   name: 'user',

@@ -9,20 +9,9 @@ export class ErrorFilter implements ExceptionFilter {
     const statusCode = exception.getStatus();
 
     return response.status(statusCode).json({
-      message: this.parseExceptionMessage(exception),
+      message: exception.message,
       statusCode,
       error: exception.name,
     });
-  }
-
-  private parseExceptionMessage(exception: Error): string {
-    console.log(exception);
-    console.log('error');
-    return 'error';
-    // const response = exception.getResponse() as any;
-    // if (Array.isArray(response.message)) {
-    //   return response.message[0];
-    // }
-    // return response.message;
   }
 }

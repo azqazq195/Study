@@ -5,17 +5,17 @@ import { GlobalDatabaseModule } from './shared/database/global-database.module';
 import { UserModule } from './domain/user/user.module';
 import { ProductModule } from './domain/product/product.module';
 import { BrandModule } from './domain/brand/brand.module';
-import { AuthModule } from './domain/auth/auth.module';
 import { GlobalPipeModule } from './shared/pipe/global-pipe.module';
 import { GlobalFilterModule } from './shared/filter/global-filter.module';
+import { GlobalSecurityModule } from './shared/security/global-security.module';
 
 @Module({
   imports: [
-    GlobalPipeModule,
     GlobalDatabaseModule,
+    GlobalPipeModule,
     GlobalFilterModule,
+    GlobalSecurityModule,
 
-    AuthModule,
     UserModule,
     ProductModule,
     BrandModule,

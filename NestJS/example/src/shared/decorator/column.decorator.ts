@@ -1,10 +1,21 @@
 import {
+  Column,
   ColumnOptions,
   ColumnType,
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+interface RequiredColumnOptions extends ColumnOptions {
+  type: ColumnType;
+  name: string;
+  comment: string;
+}
+
+export function BaseColumn(options: RequiredColumnOptions): PropertyDecorator {
+  return Column(options);
+}
 
 interface RequiredBaseDateColumnOptions extends ColumnOptions {
   type: ColumnType;

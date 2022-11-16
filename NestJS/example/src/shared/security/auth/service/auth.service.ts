@@ -1,10 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserService } from '../../user/service/user.service';
-import { RequestUser } from '../entity/request-user.interface';
+import { UserService } from '../../../../domain/user/service/user.service';
+import { RequestUser } from '../interface/request-user.interface';
+import { JwtService } from '@nestjs/jwt';
+import { Token } from '../interface/token.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
+
   async validateUser(userId: string, password: string): Promise<RequestUser> {
     const user = await this.userService.findOneByUserId(userId);
 
@@ -22,5 +28,11 @@ export class AuthService {
       name: user.name,
       roles: user.roles.map((role) => ({ id: role.id, name: role.name })),
     } as RequestUser;
+  }
+
+  async login(user: RequestUser) {
+    return {
+      access_token: this.jwtService.sign(user),
+    } as Token;
   }
 }

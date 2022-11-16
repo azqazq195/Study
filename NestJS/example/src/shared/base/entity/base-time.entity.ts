@@ -3,7 +3,7 @@ import {
   CreatedAtBaseColumn,
   DeletedAtBaseColumn,
   UpdatedAtBaseColumn,
-} from '../../decorators/column/base-date-column';
+} from '../../decorator/column.decorator';
 
 export class BaseTimeEntity {
   @CreatedAtBaseColumn({

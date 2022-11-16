@@ -1,5 +1,5 @@
-import { UserEntity } from '../../user/entity/user.entity';
-import { UserRoleEntity } from '../../user/entity/user-role.entity';
+import { UserEntity } from '../../../../domain/user/entity/user.entity';
+import { UserRoleEntity } from '../../../../domain/user/entity/user-role.entity';
 
 export interface RequestUser
   extends Pick<UserEntity, 'id' | 'userId' | 'name'> {
