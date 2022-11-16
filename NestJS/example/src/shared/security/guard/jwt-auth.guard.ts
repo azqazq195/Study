@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
-import { IS_PUBLIC_KEY } from '../../decorator/guard.decorator';
+import { IS_PUBLIC_KEY } from '../decorator/guard.decorator';
 
 export class JwtAuthGuard extends AuthGuard('jwt') {
   constructor(@Inject(Reflector) private reflector: Reflector) {
@@ -20,7 +20,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       return true;
     }
 
-    this.hasToken(context);
+    this.validateToken(context);
 
     return super.canActivate(context);
   }
@@ -39,7 +39,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     ]);
   }
 
-  private hasToken(context: ExecutionContext): void {
+  private validateToken(context: ExecutionContext): void {
     const token = context.switchToHttp().getRequest().headers['authorization'];
     if (!token) {
       throw new UnauthorizedException('토큰 정보가 존재하지 않습니다.');

@@ -10,6 +10,7 @@ import { RoleGuard } from './guard/role.guard';
 import { UserModule } from '../../domain/user/user.module';
 import { AuthService } from './auth/service/auth.service';
 import { LocalStrategy } from './strategy/local.strategy';
+import { AuthController } from './auth/controller/auth.controller';
 
 @Module({
   imports: [
@@ -35,6 +36,6 @@ import { LocalStrategy } from './strategy/local.strategy';
       useClass: RoleGuard,
     },
   ],
-  exports: [JwtModule],
+  controllers: [AuthController],
 })
 export class GlobalSecurityModule {}

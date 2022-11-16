@@ -11,7 +11,7 @@ import { UserService } from '../service/user.service';
 import { UserEntity } from '../entity/user.entity';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
-import { Roles } from '../../../shared/decorator/guard.decorator';
+import { Roles } from '../../../shared/security/decorator/guard.decorator';
 import { USER_ROLE } from '../entity/type/enum/user-role.enum';
 
 @Controller('users')
