@@ -9,14 +9,16 @@ import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorator/guard.decorator';
 
 export class JwtAuthGuard extends AuthGuard('jwt') {
-  constructor(@Inject(Reflector) private reflector: Reflector) {
+  constructor(@Inject(Reflector) private readonly reflector: Reflector) {
     super();
   }
 
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
+    console.log('jwt auth guard');
     if (this.isPublic(context)) {
+      console.log('jwt auth guard is public');
       return true;
     }
 

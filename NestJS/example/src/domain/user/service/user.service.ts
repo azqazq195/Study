@@ -4,15 +4,17 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
 import { CreateUserDto } from '../controller/dto/createUser.dto';
-import { RoleService } from './role.service';
+import { UserRoleService } from './user-role.service';
 import { UpdateUserDto } from '../controller/dto/updateUser.dto';
+import { AuthService } from '../../../shared/security/auth/service/auth.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-    private readonly roleService: RoleService,
+    private readonly roleService: UserRoleService,
+    private readonly authService: AuthService,
   ) {}
 
   findAll(): Promise<UserEntity[]> {
@@ -20,15 +22,9 @@ export class UserService {
   }
 
   findOne(id: number): Promise<UserEntity> {
+    console.log(this.authService.getRequestedUser());
     return this.userRepository.findOneOrFail(
       { id: id },
-      { relations: ['roles'] },
-    );
-  }
-
-  findOneByUserId(userId: string): Promise<UserEntity> {
-    return this.userRepository.findOne(
-      { userId: userId },
       { relations: ['roles'] },
     );
   }

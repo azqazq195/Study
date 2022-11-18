@@ -6,9 +6,9 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { USER_ROLE } from '../../../domain/user/entity/type/enum/user-role.enum';
-import { RequestUser } from '../auth/interface/request-user.interface';
+import { Role } from '../entity/enum/role.enum';
 import { ROLE_KEY } from '../decorator/guard.decorator';
+import { UserEntity } from '../../../domain/user/entity/user.entity';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -25,14 +25,14 @@ export class RoleGuard implements CanActivate {
     return true;
   }
 
-  private getRequiredRoles(context: ExecutionContext): USER_ROLE[] {
-    return this.reflector.getAllAndOverride<USER_ROLE[]>(ROLE_KEY, [
+  private getRequiredRoles(context: ExecutionContext): Role[] {
+    return this.reflector.getAllAndOverride<Role[]>(ROLE_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
   }
 
-  private validateRoles(roles: USER_ROLE[], user: RequestUser): void {
+  private validateRoles(roles: Role[], user: UserEntity): void {
     if (
       !roles.some((value) => user.roles.some((roles) => roles.id === value))
     ) {
