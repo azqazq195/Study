@@ -13,10 +13,10 @@ import { UserRoleEntity } from '../../../domain/user/entity/user-role.entity';
     AuthServiceModule,
     PassportModule,
 
-    // AuthService
-    TypeOrmModule.forFeature([UserEntity, UserRoleEntity]),
-    CustomJwtModule,
+    // // AuthService
+    // TypeOrmModule.forFeature([UserEntity, UserRoleEntity]),
+    // CustomJwtModule,
   ],
-  providers: [LocalStrategy, AuthService],
+  providers: [LocalStrategy], // AuthService,
 })
 export class LocalStrategyModule {}

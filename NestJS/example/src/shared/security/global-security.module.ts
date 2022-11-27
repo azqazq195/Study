@@ -4,7 +4,6 @@ import { LocalStrategyModule } from './module/local-strategy.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
 import { RoleGuard } from './guard/role.guard';
-import { AuthServiceModule } from './auth/module/auth-service.module';
 
 @Module({
   imports: [JwtStrategyModule, LocalStrategyModule],
