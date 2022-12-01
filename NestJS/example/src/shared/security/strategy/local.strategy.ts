@@ -8,7 +8,6 @@ import { ContextIdFactory, ModuleRef } from '@nestjs/core';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private moduleRef: ModuleRef) {
-    console.log('>> local strategy constructor <<');
     super({
       passReqToCallback: true,
     });
@@ -16,14 +15,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
   async validate(
     request: Request,
-    userId: string,
+    username: string,
     password: string,
   ): Promise<RequestUser> {
-    console.log('local strategy validate');
     const contextId = ContextIdFactory.getByRequest(request);
     const authService = await this.moduleRef.resolve(AuthService, contextId, {
       strict: false,
     });
-    return authService.validateUser(userId, password);
+    return authService.validateUser(username, password);
   }
 }

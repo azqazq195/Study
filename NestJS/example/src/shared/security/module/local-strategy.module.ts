@@ -5,8 +5,8 @@ import { AuthServiceModule } from '../auth/module/auth-service.module';
 import { AuthService } from '../auth/service/auth.service';
 import { CustomJwtModule } from './custom-jwt.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '../../../domain/user/entity/user.entity';
-import { UserRoleEntity } from '../../../domain/user/entity/user-role.entity';
+import { UserEntity } from '../../../domain/user/user/entity/user.entity';
+import { RoleEntity } from '../../../domain/user/role/entity/role.entity';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { UserRoleEntity } from '../../../domain/user/entity/user-role.entity';
     PassportModule,
 
     // // AuthService
-    // TypeOrmModule.forFeature([UserEntity, UserRoleEntity]),
+    // TypeOrmModule.forFeature([UserEntity, RoleEntity]),
     // CustomJwtModule,
   ],
   providers: [LocalStrategy], // AuthService,

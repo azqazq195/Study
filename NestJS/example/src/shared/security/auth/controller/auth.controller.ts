@@ -5,16 +5,13 @@ import { Public } from '../../decorator/guard.decorator';
 
 @Controller()
 export class AuthController {
-  constructor(private authService: AuthService) {
-    console.log('>> auth controller constructor <<');
-  }
+  constructor(private authService: AuthService) {}
 
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   @HttpCode(200)
   async login(@Request() req) {
-    console.log('auth controller login');
     return this.authService.login(req.user);
   }
 }

@@ -92,11 +92,11 @@ describe('ProductService', () => {
   //   await productService.save(products[0]);
   //
   //   const storedProduct = await productService.findOne(products[0].id);
-  //   console.log(storedProduct);
-  //   console.log(await storedProduct.brand);
-  //   console.log(storedProduct);
+  //   (storedProduct);
+  //   (await storedProduct.brand);
+  //   (storedProduct);
   //
-  //   console.log((await products[0].brand).id);
+  //   ((await products[0].brand).id);
   //   const storedBrand2 = await brandService.findOne(
   //     (
   //       await products[0].brand
@@ -104,6 +104,6 @@ describe('ProductService', () => {
   //   );
   //   storedBrand2.addProductEntity(products[1]);
   //   await brandService.save(storedBrand2);
-  //   console.log(storedBrand2);
+  //   (storedBrand2);
   // });
 });

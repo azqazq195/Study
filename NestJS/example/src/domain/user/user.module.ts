@@ -1,16 +1,23 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './controller/user.controller';
+import { UserController } from './user/controller/user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './entity/user.entity';
-import { UserRoleEntity } from './entity/user-role.entity';
-import { UserService } from './service/user.service';
-import { UserRoleService } from './service/user-role.service';
-import { AuthServiceModule } from '../../shared/security/auth/module/auth-service.module';
+import { UserEntity } from './user/entity/user.entity';
+import { UserService } from './user/service/user.service';
+import { PermissionModule } from './permission/permission.module';
+import { RoleModule } from './role/role.module';
+import { UserRoleEntity } from './user/entity/user-role.entity';
+import { UserRolePermissionEntity } from './user/entity/user-role-permission.entity';
+import { UserRoleService } from './user/service/user-role.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, UserRoleEntity]),
-    AuthServiceModule,
+    TypeOrmModule.forFeature([
+      UserEntity,
+      UserRoleEntity,
+      UserRolePermissionEntity,
+    ]),
+    RoleModule,
+    PermissionModule,
   ],
   providers: [UserService, UserRoleService],
   controllers: [UserController],

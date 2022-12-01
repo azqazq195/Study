@@ -7,29 +7,24 @@ import {
 import { RequestUser } from '../interface/request-user.interface';
 import { JwtService } from '@nestjs/jwt';
 import { Token } from '../interface/token.interface';
-import { UserEntity } from '../../../../domain/user/entity/user.entity';
+import { UserEntity } from '../../../../domain/user/user/entity/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { REQUEST } from '@nestjs/core';
 
-@Injectable({ scope: Scope.REQUEST })
-// @Injectable()
+@Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly jwtService: JwtService,
-    @Inject(REQUEST) private readonly request,
-  ) {
-    console.log('>> auth service constructor <<');
-  }
+  ) {}
 
-  async getRequestedUser(): Promise<UserEntity> {
-    return this.request.user;
-  }
+  // async getRequestedUser(): Promise<UserEntity> {
+  //   return this.request.user;
+  // }
 
-  async validateUser(userId: string, password: string): Promise<RequestUser> {
-    const user = await this.findOneByUserId(userId);
+  async validateUser(username: string, password: string): Promise<RequestUser> {
+    const user = await this.findOneByUserName(username);
 
     if (!user) {
       throw new UnauthorizedException('존재하지 않는 사용자입니다.');
@@ -40,7 +35,7 @@ export class AuthService {
     }
 
     return {
-      userId: user.userId,
+      username: user.username,
     } as RequestUser;
   }
 
@@ -50,9 +45,9 @@ export class AuthService {
     } as Token;
   }
 
-  async findOneByUserId(userId: string): Promise<UserEntity> {
+  async findOneByUserName(username: string): Promise<UserEntity> {
     return this.userRepository.findOne(
-      { userId: userId },
+      { username: username },
       { relations: ['roles'] },
     );
   }

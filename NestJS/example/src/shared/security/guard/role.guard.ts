@@ -6,9 +6,9 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { Role } from '../entity/enum/role.enum';
 import { ROLE_KEY } from '../decorator/guard.decorator';
-import { UserEntity } from '../../../domain/user/entity/user.entity';
+import { UserEntity } from '../../../domain/user/user/entity/user.entity';
+import { Role } from '../../../domain/user/role/enum/role.enum';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -34,7 +34,9 @@ export class RoleGuard implements CanActivate {
 
   private validateRoles(roles: Role[], user: UserEntity): void {
     if (
-      !roles.some((value) => user.roles.some((roles) => roles.id === value))
+      !roles.some((value) =>
+        user.userRoles.some((roles) => roles.role.value === value),
+      )
     ) {
       throw new ForbiddenException('권한이 없습니다.');
     }
