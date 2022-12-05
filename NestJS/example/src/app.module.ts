@@ -7,6 +7,7 @@ import { GlobalPipeModule } from './shared/pipe/global-pipe.module';
 import { GlobalFilterModule } from './shared/filter/global-filter.module';
 import { AuthModule } from './shared/security/auth/module/auth.module';
 import { GlobalSecurityModule } from './shared/security/global-security.module';
+import { TestModule } from './domain/test/test.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { GlobalSecurityModule } from './shared/security/global-security.module';
     ProductModule,
     BrandModule,
     AuthModule,
+    TestModule,
   ],
 })
 export class AppModule {}

@@ -12,12 +12,14 @@ export class BaseTimeEntity {
     comment: '생성일시',
   })
   readonly createdAt: DateTimeString;
+
   @UpdatedAtBaseColumn({
     type: 'datetime',
     name: 'updated_at',
     comment: '수정일시',
   })
   readonly updatedAt: DateTimeString;
+
   @DeletedAtBaseColumn({
     type: 'datetime',
     name: 'deleted_at',

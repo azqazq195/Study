@@ -14,6 +14,8 @@ export class TypeormErrorFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     // const statusCode = exception.getStatus();
 
+    console.log(exception);
+
     return response.status(HttpStatus.BAD_REQUEST).json({
       message: exception.message,
       statusCode: HttpStatus.BAD_REQUEST,

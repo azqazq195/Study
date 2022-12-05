@@ -23,7 +23,7 @@ export class TestHelper {
       database: 'test',
       entities: [UserEntity, ProductEntity, BrandEntity],
       synchronize: true,
-      logging: true,
+      // logging: true,
       dropSchema: true,
       connectTimeout: 3000,
     });

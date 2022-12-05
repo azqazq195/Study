@@ -19,7 +19,11 @@ export class ProductService {
   }
 
   findOne(id: number): Promise<ProductEntity> {
-    const product = this.productRepository.findOneOrFail({ id: id });
+    const product = this.productRepository.findOneOrFail({
+      where: {
+        id: id,
+      },
+    });
     return product.then((value) => value);
   }
 
