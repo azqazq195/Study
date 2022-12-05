@@ -1,10 +1,18 @@
-import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { plainToClass } from 'class-transformer';
+import {
+  DeepPartial,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  Repository,
+} from 'typeorm';
 import { DATABASE_ENGINE } from '../../../../shared/config/configuration';
 import { BaseTimeEntity } from '../../../../shared/base/entity/base-time.entity';
 import { BaseColumn } from '../../../../shared/decorator/column.decorator';
 import { UserRoleEntity } from './user-role.entity';
 import { Mutable } from '../../../../shared/utils/mutable.type';
+import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
 
 @Entity({
   name: 'users',
@@ -55,19 +63,18 @@ export class UserEntity extends BaseTimeEntity {
     () => UserRoleEntity,
     (userRole) => userRole.user,
     {
-      cascade: ['remove'],
-      nullable: false,
-      lazy: false,
+      eager: true,
+      cascade: true,
     },
   )
-  readonly userRoles: UserRoleEntity[];
+  readonly userRoles?: UserRoleEntity[];
 
-  public changeRoles(userRoles: UserRoleEntity[]): void {
+  public setRoles(userRoles: UserRoleEntity[]): void {
     const mutableThis = this as Mutable<UserEntity>;
     mutableThis.userRoles = userRoles;
   }
 
-  static from(args: Partial<UserEntity>) {
-    return plainToClass(UserEntity, args);
+  static from(args: DeepPartial<UserEntity>): UserEntity {
+    return plainToClass(this, args);
   }
 }

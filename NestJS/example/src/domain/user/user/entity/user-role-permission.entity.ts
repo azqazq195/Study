@@ -1,33 +1,43 @@
-import { Entity, ManyToOne } from 'typeorm';
+import { Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRoleEntity } from './user-role.entity';
-import { PermissionEntity } from '../../permission/entity/permission.entity';
 import { plainToClass } from 'class-transformer';
+import { BaseColumn } from '../../../../shared/decorator/column.decorator';
+import { Permission } from './enum/permission.enum';
 
 @Entity({
   name: 'users_roles_permissions',
 })
+@Index(['userRole', 'permission'], { unique: true })
 export class UserRolePermissionEntity {
+  @PrimaryGeneratedColumn({
+    type: 'int',
+    name: 'id',
+    comment: 'id',
+  })
+  readonly id: number;
+
   @ManyToOne(
     // line break
     () => UserRoleEntity,
     (userRole) => userRole.userRolePermissions,
     {
-      primary: true,
+      onDelete: 'CASCADE',
+      orphanedRowAction: 'delete',
     },
   )
-  readonly userRole?: UserRoleEntity;
+  readonly userRole: UserRoleEntity;
 
-  @ManyToOne(
-    // line break
-    () => PermissionEntity,
-    (permission) => permission.userRolePermissions,
-    {
-      primary: true,
-    },
-  )
-  readonly permission: PermissionEntity;
+  @BaseColumn({
+    type: 'varchar',
+    name: 'permission',
+    length: 20,
+    comment: 'permission',
+  })
+  readonly permission: Permission;
 
-  static from(args: Partial<UserRolePermissionEntity>) {
-    return plainToClass(this, args);
+  static from(permission: Permission): UserRolePermissionEntity {
+    return plainToClass(this, {
+      permission: permission,
+    });
   }
 }

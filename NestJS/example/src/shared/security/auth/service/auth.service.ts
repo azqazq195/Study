@@ -10,6 +10,7 @@ import { Token } from '../interface/token.interface';
 import { UserEntity } from '../../../../domain/user/user/entity/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserService } from '../../../../domain/user/user/service/user.service';
 
 @Injectable()
 export class AuthService {
@@ -46,9 +47,11 @@ export class AuthService {
   }
 
   async findOneByUserName(username: string): Promise<UserEntity> {
-    return this.userRepository.findOne(
-      { username: username },
-      { relations: ['roles'] },
-    );
+    return this.userRepository.findOne({
+      where: {
+        username: username,
+      },
+      relations: ['userRoles', 'userRoles.userRolePermissions'],
+    });
   }
 }

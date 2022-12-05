@@ -1,13 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { initializeTransactionalContext } from 'typeorm-transactional-cls-hooked';
-import { ValidationPipe } from '@nestjs/common';
-
-initializeTransactionalContext();
+import { initializeTransactionalContext } from 'typeorm-transactional';
+import { useContainer } from 'class-validator';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  initializeTransactionalContext();
+  const app = await NestFactory.create(AppModule, {
+    abortOnError: true,
+  });
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
   await app.listen(3000);
 }
 bootstrap();

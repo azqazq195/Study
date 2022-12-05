@@ -14,6 +14,8 @@ export class EntityNotFoundErrorFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     // const statusCode = exception.getStatus();
 
+    console.log(exception);
+
     return response.status(HttpStatus.NOT_FOUND).json({
       message: exception.message,
       statusCode: HttpStatus.NOT_FOUND,

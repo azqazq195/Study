@@ -16,7 +16,11 @@ export class BrandService {
   }
 
   findOne(id: number): Promise<BrandEntity> {
-    return this.brandRepository.findOneOrFail({ id: id });
+    return this.brandRepository.findOneOrFail({
+      where: {
+        id: id,
+      },
+    });
   }
 
   @Transactional()

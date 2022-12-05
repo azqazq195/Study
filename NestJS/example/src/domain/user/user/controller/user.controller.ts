@@ -19,7 +19,7 @@ export class UserController {
 
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<UserEntity> {
-    return await this.userService.findOne(id);
+    return await this.userService.findOneById(id);
   }
 
   @Get()
@@ -30,7 +30,7 @@ export class UserController {
   @Post()
   @Public()
   async create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
-    return this.userService.create(createUserDto);
+    return this.userService.insert(createUserDto);
   }
 
   // @Patch(':id')
@@ -39,6 +39,7 @@ export class UserController {
   // }
 
   @Put(':id')
+  @Public()
   async put(
     @Param('id') id: number,
     @Body() updateUserDto: UpdateUserDto,
