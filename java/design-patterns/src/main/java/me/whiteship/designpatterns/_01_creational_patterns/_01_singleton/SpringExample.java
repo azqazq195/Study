@@ -9,7 +9,7 @@ public class SpringExample {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
         String hello = applicationContext.getBean("hello", String.class);
         String hello2 = applicationContext.getBean("hello", String.class);
-        System.out.println(hello == hello2);
+        System.out.println(hello.equals(hello2));
     }
 
 }
