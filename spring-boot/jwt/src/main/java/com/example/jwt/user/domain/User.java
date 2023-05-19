@@ -1,5 +1,6 @@
 package com.example.jwt.user.domain;
 
+import com.example.jwt._common.domain.AES256Converter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(length = 255, nullable = false)
     private String email;
@@ -33,6 +34,10 @@ public class User {
 
     @Column(nullable = true)
     private int age;
+
+    @Column(nullable = false)
+    @Convert(converter = AES256Converter.class)
+    private String regNo;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
