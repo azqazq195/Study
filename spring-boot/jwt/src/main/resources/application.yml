@@ -1,0 +1,11 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:test-db
+
+config:
+  aes256:
+    algorithm: AES/CBC/PKCS5Padding
+    key: secretKey
