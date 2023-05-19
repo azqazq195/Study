@@ -6,6 +6,11 @@ spring:
     url: jdbc:h2:mem:test-db
 
 config:
+  jwt:
+    secret: and0LWV4YW1wbGUtYWNjZXNzLXRva2VuLXNlY3JldC1rZXk=
+    access-token-expire-time: 720000
+    refresh-secret: and0LWV4YW1wbGUtcmVmcmVzaC10b2tlbi1zZWNyZXQta2V5
+    refresh-token-expire-time: 1209600000
   aes256:
     algorithm: AES/CBC/PKCS5Padding
-    key: secretKey
+    key: secretKeySecretKey
