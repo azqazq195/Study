@@ -2,11 +2,13 @@ package com.example.jwt.user.application.dto;
 
 import com.example.jwt.user.domain.Role;
 import com.example.jwt.user.domain.User;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Builder
+@Getter
+@AllArgsConstructor
 public class UserResponse {
     private long id;
     private String email;
@@ -18,15 +20,15 @@ public class UserResponse {
     private LocalDateTime deletedAt;
 
     public static UserResponse of(User user) {
-        return UserResponse.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .name(user.getName())
-                .age(user.getAge())
-                .role(user.getRole())
-                .createdAt(user.getCreatedAt())
-                .modifiedAt(user.getModifiedAt())
-                .deletedAt(user.getDeletedAt())
-                .build();
+        return new UserResponse(
+                user.getId(),
+                user.getEmail(),
+                user.getName(),
+                user.getAge(),
+                user.getRole(),
+                user.getCreatedAt(),
+                user.getModifiedAt(),
+                user.getDeletedAt()
+        );
     }
 }
