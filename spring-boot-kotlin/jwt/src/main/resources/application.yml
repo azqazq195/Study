@@ -1,26 +1,48 @@
 spring:
-  # DB 연결
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   datasource:
-    # 설치된 H2 DB와 연결 URL
-    url: jdbc:h2:~/test
-    # 접속을 위한 드라이버
-    driver-class-name: org.h2.Driver
-    # springboot 2.4 부터는 username 이 꼭 있어야합니다. 없으면 에러가 발생합니다.
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jwt
+    username: jwt
+    password: jwt
+
+
+  flyway:
+    enabled: false
+    baselineOnMigrate: false
+    locations:
+      - classpath:db/migration/{vendor}
+      - classpath:db/seed/local
+
   jpa:
-    # JPA 가 수행하는 SQL 을 볼 수 있다.
-    show-sql: true
-    # 객체를 보고 자동으로 테이블 생성 여부. 생성 - create, 비생성 - none
-    # 테스트이기 때문에 create 로 설정하며
-    # 실제로는 none 으로 합니다. create 이면 기존의 테이블을 전부 밀어버립니다.
     hibernate:
       ddl-auto: create-drop
-  # 콘솔 확인 을 위한 always
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
   output:
     ansi:
       enabled: always
-# 파라미터 확인을 위한 trace
-logging:
-  level:
-    org.hibernate.type: trace
+
+server:
+  port: 8080
+
+jwt:
+  secret: and0LWV4YW1wbGUtYWNjZXNzLXRva2VuLXNlY3JldC1rZXk=
+  # 2시간 = 2 * 60 * 60 * 1000
+  access-token-expire-time: 720000
+
+  refresh-secret: and0LWV4YW1wbGUtcmVmcmVzaC10b2tlbi1zZWNyZXQta2V5
+  # 2주 = 14 * 24 * 60 * 60 * 1000
+  refresh-token-expire-time: 1209600000

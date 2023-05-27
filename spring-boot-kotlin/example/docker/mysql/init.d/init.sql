@@ -1,0 +1,7 @@
+-- CREATE USER 'okkot'@'localhost' IDENTIFIED BY 'okkot';
+-- CREATE USER 'okkot'@'%' IDENTIFIED BY 'okkot';
+--
+-- GRANT ALL PRIVILEGES ON *.* TO 'okkot'@'localhost';
+-- GRANT ALL PRIVILEGES ON *.* TO 'okkot'@'%';
+--
+-- CREATE DATABASE okkot DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
