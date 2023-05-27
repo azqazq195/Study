@@ -1,4 +1,4 @@
-.idea/
-.mvn/
-.gradle/
-.node_modules/
+.idea
+.mvn
+.gradle
+.node_modules
