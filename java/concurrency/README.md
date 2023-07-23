@@ -25,13 +25,13 @@ Concurrency 문제는 동시에 여러 작업을 수행하는 과정에서 발�
 ## Concurrency 해결방안
 
 - Synchronization: 데이터를 접근하는 스레드의 순서를 제어
-    - 단점: 스레드가 순차적으로 접근하도록 강제하기 때문에 성능 저하
+  - 단점: 스레드가 순차적으로 접근하도록 강제하기 때문에 성능 저하
 - Locking: 한 번에 하나의 스레드만 데이터에 접근하도록 보장
-    - 단점: 락을 기다리는 시간 발생, 락의 획득과 해제 과정도 오버헤드
+  - 단점: 락을 기다리는 시간 발생, 락의 획득과 해제 과정도 오버헤드
 - Atomic Operations: 이 연산은 중간에 방해를 받지 않으므로 race condition을 방지
-    - 단점: 단순한 연산만을 제공, Atomic operations에 대한 높은 이해도가 필요
+  - 단점: 단순한 연산만을 제공, Atomic operations에 대한 높은 이해도가 필요
 - Immutable data: 데이터를 변경 불가하도록 설정
-    - 단점: 데이터 변경 불가하며 동시성 처리와는 다소 동떨어지는 느낌
+  - 단점: 데이터 변경 불가하며 동시성 처리와는 다소 동떨어지는 느낌
 
 ## Synchronization VS Locking
 
@@ -131,12 +131,12 @@ public class AtomicEntity {
 
 ```java
 for(int i=0;i< 10;i++){
-        executorService.submit(()->{
+    executorService.submit(()->{
         for(int j=0;j< 10000;j++){
-        entity.increment();
+            entity.increment();
         }
-        });
-        }
+    });
+}
 ```
 
 ### 일관성 확인
@@ -181,4 +181,3 @@ TestCode.synchronizedEntity  avgt    5   0.001 ±  0.001   s/op
 TestCode.lockedEntity        avgt    5   0.002 ±  0.001   s/op
 TestCode.atomicEntity        avgt    5   0.002 ±  0.001   s/op
 ```
-
