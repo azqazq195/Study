@@ -1,0 +1,51 @@
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서울",
+  "nameEnglish": "Seoul"
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "강남",
+  "nameEnglish": "Gang-Name",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서초",
+  "nameEnglish": "Su-cho",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "도곡",
+  "nameEnglish": "Do-Gok",
+  "parentId": 2
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "대치",
+  "nameEnglish": "Dae-Chi",
+  "parentId": 2
+}
+
+###
+GET http://localhost:8080/region/search?parentNameKorean=서울&page=0&size=10&sort=id,desc

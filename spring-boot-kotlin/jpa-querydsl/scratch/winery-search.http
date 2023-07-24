@@ -1,0 +1,71 @@
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서울",
+  "nameEnglish": "Seoul"
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "강남",
+  "nameEnglish": "Gang-Name",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서초",
+  "nameEnglish": "Seo-Cho",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "대치",
+  "nameEnglish": "Dae-Chi",
+  "parentId": 2
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리1",
+  "nameEnglish": "winery1",
+  "regionId": 2
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리2",
+  "nameEnglish": "winery2",
+  "regionId": 2
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리3",
+  "nameEnglish": "winery3",
+  "regionId": 4
+}
+
+###
+GET http://localhost:8080/winery/search?wineryNameEnglish=winery1
