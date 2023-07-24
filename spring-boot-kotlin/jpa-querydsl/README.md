@@ -52,7 +52,7 @@
 
 테스트 코드 및 Rest Docs는 Region만 작성
 
-http://localhost:8080/docs/region.html
+[restdocs](https://htmlpreview.github.io/?https://github.com/azqazq195/Study/blob/master/spring-boot-kotlin/jpa-querydsl/src/main/resources/static/docs/region.html)
 
 [RegionTest](src/test/kotlin/com/example/jpaquerydsl/region)
 
