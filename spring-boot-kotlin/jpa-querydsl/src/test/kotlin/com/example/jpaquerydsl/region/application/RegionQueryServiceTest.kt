@@ -1,6 +1,5 @@
 package com.example.jpaquerydsl.region.application
 
-import com.example.jpaquerydsl.SampleDataLoader
 import com.example.jpaquerydsl._fixture.*
 import com.example.jpaquerydsl.grape.domain.GrapeRepository
 import com.example.jpaquerydsl.region.domain.repository.RegionRepository
@@ -14,7 +13,6 @@ import io.kotest.extensions.spring.SpringTestLifecycleMode
 import io.kotest.matchers.shouldBe
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.transaction.annotation.Transactional
@@ -191,7 +189,4 @@ internal class RegionQueryServiceTest @Autowired constructor(
             }
         }
     }
-}) {
-    @MockBean
-    lateinit var sampleDataLoader: SampleDataLoader
-}
+})
