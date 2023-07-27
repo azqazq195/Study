@@ -37,6 +37,7 @@ dependencies {
     val kotestVersion = "5.6.2"
 
     // spring boot
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -53,7 +54,10 @@ dependencies {
     implementation("org.apache.commons:commons-csv:1.10.0")
 
     // database
-    runtimeOnly("com.h2database:h2")
+    implementation("mysql:mysql-connector-java:8.0.32")
+
+    // kotlin-faker
+    implementation("io.github.serpro69:kotlin-faker:1.14.0")
 
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
