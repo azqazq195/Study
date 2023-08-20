@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jpa
+    username: jpa
+    password: jpa
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  sql:
+    init:
+      mode: always
+  #      data-locations: classpath:sql/init-region.sql,classpath:sql/init-winery.sql,classpath:sql/init-grape.sql,classpath:sql/init-share.sql
+  #      schema-locations: classpath:sql/schema.sql
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    #      ddl-auto: create-drop
+    #    defer-datasource-initialization: true

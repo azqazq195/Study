@@ -1,0 +1,266 @@
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서울",
+  "nameEnglish": "Seoul"
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "강남",
+  "nameEnglish": "Gang-Name",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "서초",
+  "nameEnglish": "Seo-Cho",
+  "parentId": 1
+}
+
+###
+POST http://localhost:8080/region
+Content-Type: application/json
+
+{
+  "nameKorean": "대치",
+  "nameEnglish": "Dae-Chi",
+  "parentId": 2
+}
+
+###
+POST http://localhost:8080/grape
+Content-Type: application/json
+
+{
+  "nameKorean": "포도",
+  "nameEnglish": "p",
+  "acidity": 2,
+  "body": 2,
+  "sweetness": 2,
+  "tannin": 2
+}
+
+###
+POST http://localhost:8080/grape
+Content-Type: application/json
+
+{
+  "nameKorean": "거봉",
+  "nameEnglish": "g",
+  "acidity": 2,
+  "body": 2,
+  "sweetness": 2,
+  "tannin": 2
+}
+
+###
+POST http://localhost:8080/share
+Content-Type: application/json
+
+{
+  "share": 1.0,
+  "grapeId": 1,
+  "regionId": 1
+}
+
+###
+POST http://localhost:8080/share
+Content-Type: application/json
+
+{
+  "share": 0.5,
+  "grapeId": 1,
+  "regionId": 3
+}
+
+###
+POST http://localhost:8080/share
+Content-Type: application/json
+
+{
+  "share": 1.0,
+  "grapeId": 2,
+  "regionId": 3
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리1",
+  "nameEnglish": "winery1",
+  "regionId": 2
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리2",
+  "nameEnglish": "winery2",
+  "regionId": 2
+}
+
+###
+POST http://localhost:8080/winery
+Content-Type: application/json
+
+{
+  "nameKorean": "와이너리3",
+  "nameEnglish": "winery3",
+  "regionId": 4
+}
+
+
+###
+POST http://localhost:8080/wine
+Content-Type: application/json
+
+{
+  "type": "RED",
+  "nameKorean": "와인1",
+  "nameEnglish": "Wine1",
+  "alcohol": 16.0,
+  "acidity": 1,
+  "body": 1,
+  "sweetness": 1,
+  "tannin": 1,
+  "servingTemperature": 1,
+  "score": 0.9,
+  "price": 200000,
+  "style": "sexy",
+  "grade": "not bad",
+  "wineryId": 1,
+  "regionId": 3,
+  "grapeIds": [
+    1,
+    2
+  ],
+  "importer": {
+    "name": "디렉셔널"
+  },
+  "aromas": [
+    {
+      "name": "향기1"
+    },
+    {
+      "name": "향기2"
+    }
+  ],
+  "pairings": [
+    {
+      "name": "치즈"
+    },
+    {
+      "name": "양고기"
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/wine
+Content-Type: application/json
+
+{
+  "type": "RED",
+  "nameKorean": "와인2",
+  "nameEnglish": "Wine2",
+  "alcohol": 16.0,
+  "acidity": 1,
+  "body": 1,
+  "sweetness": 1,
+  "tannin": 1,
+  "servingTemperature": 1,
+  "score": 0.9,
+  "price": 200000,
+  "style": "sexy",
+  "grade": "not bad",
+  "wineryId": 1,
+  "regionId": 3,
+  "grapeIds": [
+    1,
+    2
+  ],
+  "importer": {
+    "name": "디렉셔널"
+  },
+  "aromas": [
+    {
+      "name": "향기1"
+    },
+    {
+      "name": "향기2"
+    }
+  ],
+  "pairings": [
+    {
+      "name": "치즈"
+    },
+    {
+      "name": "양고기"
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/wine
+Content-Type: application/json
+
+{
+  "type": "RED",
+  "nameKorean": "와인3",
+  "nameEnglish": "Wine3",
+  "alcohol": 16.0,
+  "acidity": 1,
+  "body": 1,
+  "sweetness": 1,
+  "tannin": 1,
+  "servingTemperature": 1,
+  "score": 0.9,
+  "price": 200000,
+  "style": "sexy",
+  "grade": "not bad",
+  "wineryId": 3,
+  "regionId": 3,
+  "grapeIds": [
+    1,
+    2
+  ],
+  "importer": {
+    "name": "디렉셔널"
+  },
+  "aromas": [
+    {
+      "name": "향기1"
+    },
+    {
+      "name": "향기2"
+    }
+  ],
+  "pairings": [
+    {
+      "name": "치즈"
+    },
+    {
+      "name": "양고기"
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/winery/1
+
+###
+GET http://localhost:8080/winery/3
