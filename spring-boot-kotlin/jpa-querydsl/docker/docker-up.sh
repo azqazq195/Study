@@ -1,1 +1,0 @@
-docker-compose -f ../docker/docker-compose.yml -p jpa up -d
