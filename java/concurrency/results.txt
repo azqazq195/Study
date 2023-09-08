@@ -1,5 +1,0 @@
-Benchmark                    Mode  Cnt   Score    Error  Units
-TestCode.atomicEntity        avgt    5   0.002 ±  0.001   s/op
-TestCode.entity              avgt    5  ≈ 10⁻³            s/op
-TestCode.lockedEntity        avgt    5   0.002 ±  0.001   s/op
-TestCode.synchronizedEntity  avgt    5   0.001 ±  0.001   s/op

@@ -1,3 +1,0 @@
-Benchmark                 Mode  Cnt  Score    Error  Units
-ServiceTest.useNotStream  avgt    5  0.002 ±  0.001   s/op
-ServiceTest.useStream     avgt    5  0.002 ±  0.001   s/op
