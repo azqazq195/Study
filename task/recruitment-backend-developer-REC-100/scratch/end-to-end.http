@@ -1,0 +1,40 @@
+
+###
+### Wine
+###
+GET http://localhost:8080/wine/257
+
+###
+GET http://localhost:8080/wine/search?minAlcohol=15
+
+###
+### Winery
+###
+GET http://localhost:8080/winery/4
+
+###
+GET http://localhost:8080/winery/search?regionNameKorean=미국&sort=id,asc&size=3&page=3
+
+###
+### Grape
+###
+GET http://localhost:8080/grape/6
+
+###
+GET http://localhost:8080/grape/search?regionNameKorean=미국&grapeNameKorean=띠
+
+###
+### Region
+###
+GET http://localhost:8080/region/1
+
+###
+GET http://localhost:8080/region/search?parentNameKorean=아르헨
+
+###
+### Importer
+###
+GET http://localhost:8080/importer/1
+
+###
+GET http://localhost:8080/importer/search

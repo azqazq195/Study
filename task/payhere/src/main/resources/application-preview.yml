@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: preview
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  sql:
+    init:
+      mode: always
+
+server:
+  port: 8080
+
+jwt:
+  secret: WjJaa1ptZGtabXhyWjJwa2JHWnJaMnB6WVhOa2FtdG9ZWE5yWkdwaGFITmthMnBoYUhOa0NnZ2ZkZmdkZmxrZ2pkbGZrZ2pzYXNkamtoYXNrZGphaHNka2phaHNkCg
+  access-token-expire-time: 1800000
