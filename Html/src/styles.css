@@ -1,0 +1,25 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+.title {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #eaeaea;
+}
+
+.box {
+  width: 30vw;
+  height: 30vw;
+  background-color: blue;
+}
