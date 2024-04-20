@@ -1,11 +1,11 @@
-package com.exmpale.distributedlock
+package com.example.lock
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DistributedLockApplication
+class LockApplication
 
 fun main(args: Array<String>) {
-    runApplication<DistributedLockApplication>(*args)
+	runApplication<LockApplication>(*args)
 }
