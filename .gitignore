@@ -7,5 +7,6 @@
 **/.cache/
 **/dist/
 
+**/__pycache__/
 **/venv
 **/.venv
