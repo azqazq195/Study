@@ -1,0 +1,13 @@
+services:
+  database:
+    container_name: querydsl-tutorial
+    image: mariadb:11.4
+    volumes:
+      - ./volume/conf.d:/etc/mysql/conf.d
+      - ./volume/data:/var/lib/mysql
+      - ./volume/initdb.d:/docker-entrypoint-initdb.d
+    env_file: .env
+    ports:
+      - "3310:3306"
+    restart: no
+
